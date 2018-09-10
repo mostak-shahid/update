@@ -1,5 +1,15 @@
 {
+	"name": "Mos FAQ",
 	"version": "1.2",
-	"details_url": "https://github.com/mostak-shahid/mos-faq",
-	"download_url": "http://mostak.belocal.today/mos-faq.zip"
+	"download_url": "http://mostak.belocal.today/mos-faq.zip",
+
+	"homepage": "https://github.com/mostak-shahid/mos-faq",
+	"requires": "4.5",
+	"tested": "4.8",
+	"last_updated": "2018-11-09 00:00:00",
+	"upgrade_notice": "Here's why you should upgrade...",
+
+	"author": "Md Mostak Shahid",
+	"author_homepage": "http://mostak.belocal.today",
+
 }
