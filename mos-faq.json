@@ -1,10 +1,8 @@
 {
-	"name": "Mos FAQ",
-	"version": "1.2",
-	"download_url": "https://github.com/mostak-shahid/update/raw/master/mos-faq.zip",
-
-	"homepage": "https://github.com/mostak-shahid/mos-faq",
-	"author": "Md Mostak Shahid",
-	"author_homepage": "http://mostak.belocal.today/",
-
+			"name" : "Mos FAQ",
+			"version" : "1.2",
+			"download_url" : "https://github.com/mostak-shahid/update/raw/master/mos-faq.zip",
+			"sections" : {
+				"description" : "Plugin description here. You can use HTML."
+			}
 }
