@@ -1,0 +1,8 @@
+{
+			"name" : "Mos Course",
+			"version" : "1.0.0",
+			"download_url" : "https://github.com/mostak-shahid/mos-course/archive/master.zip",
+			"sections" : {
+				"description" : "This is the basic version of Mos Course."
+			}
+}
