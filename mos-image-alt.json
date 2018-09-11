@@ -1,0 +1,8 @@
+{
+			"name" : "Mos Image Alter tag management",
+			"version" : "1.0.0",
+			"download_url" : "https://github.com/mostak-shahid/mos-image-alt/archive/master.zip",
+			"sections" : {
+				"description" : "This is the basic version of Mos Image Alter tag management."
+			}
+}
