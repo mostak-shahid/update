@@ -1,6 +1,6 @@
 {
 			"name" : "Protected Media Files",
-			"version" : "0.0.9",
+			"version" : "0.0.10",
 			"download_url" : "https://github.com/mostak-shahid/protected-media-files/archive/master.zip",
 			"sections" : {
 				"description" : "This is the basic version of Protected Media Files."
