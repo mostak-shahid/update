@@ -1,6 +1,6 @@
 {
 			"name" : "Mos FAQ",
-			"version" : "1.0.5",
+			"version" : "1.0.6",
 			"download_url" : "https://github.com/mostak-shahid/mos-faq/archive/master.zip",
 			"sections" : {
 				"description" : "Plugin description here. You can use HTML."
