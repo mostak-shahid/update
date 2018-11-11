@@ -15,8 +15,8 @@
 	"sections": {
 		"description": "FAQ plugin that gives you a chance to make, sort out and expose your FAQs (frequently asked questions) in a matter of seconds through your WordPress administrator board. Select from FAQ designs and styles.",
 		"installation": "<p>This section describes how to install the plugin and get it working.</p> <ul> <li>Upload the 'mos-faq' folder to the `/wp-content/plugins/` directory or install via the WP admin panel</li> <li>Activate the plugin through the 'Plugins' menu in WordPress</li> <li>That's it.</li> </ul>",
-		"changelog": "(Recommended) Changelog. <p>This section will be displayed by default when the user clicks 'View version x.y.z details'.</p>",
-		"custom_section": "This is a custom section labeled 'Custom Section'."
+		"changelog": "<h4>2.0.0</h4> <ul> <li>Visual Interface of admin panel has been updated.</li> <li>Update CSS &amp; JS panel</li> </ul> <h4>1.0.0</h4> <ul> <li>Basic version</li> </ul>",
+		"FAQs": "<h4>What does this do?</h4> <p>It uses the custom post type feature to create a dedicated FAQ section in your WordPress site, including categories and tags exclusive to them.</p> <h4>How Do I Use It?</h4> <p>Each FAQ acts like a post. You can assign your own categories or tags and organize as you see fit. Try adding the shortcode [mos_faq] to whatever page you’d like to display the FAQ on.</p> <h4>What attributes does the [mos_faq] shortcode accept?</h4> <p>The FAQ shortcode accepts a lot of attributes,</p> <dl> <dt>limit</dt> <dd>Define the number of FAQ to show. Default value of attribute is '-1'. This attribute accept any numerical value.</dd> <dt>offset</dt> <dd>Define the number of FAQ to <i>displace</i> or pass over. Default value of attribute is '0'.</dd> <dt>category</dt> <dd>Define the categories of FAQ to show. Default value of attribute is '-1'. It take a comma-separated list of FAQ category ids.<br /> For example, Audio (which has a id "123")  to include only FAQs about the Category Book (which has a id 123), you would use:<br /> [mos_faq category='123']<br /> </dd> </dl>."
 	},
 	
 	"icons" : {
