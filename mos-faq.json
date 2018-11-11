@@ -3,6 +3,6 @@
 			"version" : "1.0.11",
 			"download_url" : "https://github.com/mostak-shahid/mos-faq/archive/master.zip",
 			"sections" : {
-				"description" : "Plugin description here. You can use HTML."
+				"description" : "FAQ plugin that gives you a chance to make, sort out and expose your FAQs (frequently asked questions) in a matter of seconds through your WordPress administrator board. Select from FAQ designs and styles."
 			}
 }
