@@ -13,7 +13,7 @@
 	"author_homepage": "http://mostak.belocal.today/",
 
 	"sections": {
-		"description": "(Required) Plugin description. Basic HTML can be used in all sections.",
+		"description": "FAQ plugin that gives you a chance to make, sort out and expose your FAQs (frequently asked questions) in a matter of seconds through your WordPress administrator board. Select from FAQ designs and styles.",
 		"installation": "(Recommended) Installation instructions.",
 		"changelog": "(Recommended) Changelog. <p>This section will be displayed by default when the user clicks 'View version x.y.z details'.</p>",
 		"custom_section": "This is a custom section labeled 'Custom Section'."
