@@ -14,9 +14,9 @@
 
 	"sections": {
 		"description": "FAQ plugin that gives you a chance to make, sort out and expose your FAQs (frequently asked questions) in a matter of seconds through your WordPress administrator board. Select from FAQ designs and styles.",
-		"installation": "(Recommended) Installation instructions.",
-		"changelog": "(Recommended) Changelog. <p>This section will be displayed by default when the user clicks 'View version x.y.z details'.</p>",
-		"custom_section": "This is a custom section labeled 'Custom Section'."
+		"installation": "<p>This section describes how to install the plugin and get it working.</p> <ul> <li>Upload the 'mos-faq' folder to the `/wp-content/plugins/` directory or install via the WP admin panel</li> <li>Activate the plugin through the 'Plugins' menu in WordPress</li> <li>That's it.</li> </ul>",
+		"changelog": "<h4>2.0.0</h4> <ul> <li>Visual Interface of admin panel has been updated.</li> <li>Update CSS &amp; JS panel</li> </ul> <h4>1.0.0</h4> <ul> <li>Basic version</li> </ul>",
+		"faq": "This is a custom section labeled 'Custom Section'."
 	},
 	
 	"icons" : {
