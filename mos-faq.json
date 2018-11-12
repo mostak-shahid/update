@@ -25,8 +25,8 @@
     },
 
 	"banners": {
-		"low": "http://w-shadow.com/files/external-update-example/assets/banner-772x250.png",
-		"high": "http://w-shadow.com/files/external-update-example/assets/banner-1544x500.png"
+		"low": "http://mostak.belocal.today/wp-content/uploads/2018/11/faq-banner-772x250.jpg",
+		"high": "http://mostak.belocal.today/wp-content/uploads/2018/11/faq-banner-1544x500.jpg"
 	},
 
 	"translations": [
