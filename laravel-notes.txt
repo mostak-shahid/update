@@ -1,0 +1,16 @@
+Controller
+1. Create
+	a. php artisan make:controller ControllerName
+2. Connect
+	a. From Route Route::get('/', ['uses'=>ControllerName@method]);
+	
+Model
+Related Keywords: migration, seeder, factory, and resource
+1. Create
+	a. php artisan make:model Todo	
+2. Migration
+	a. php artisan migrate
+3. Seeder
+4. Factory
+	a. https://github.com/fzaninotto/Faker
+5. db:seed
