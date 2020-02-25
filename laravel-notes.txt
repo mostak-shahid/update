@@ -1,16 +1,59 @@
+Route
+1. Route::get('/', function () {return view('welcome');});
+2. Route::get('/', ['uses'=>ControllerName@method]);
+
 Controller
 1. Create
 	a. php artisan make:controller ControllerName
 2. Connect
 	a. From Route Route::get('/', ['uses'=>ControllerName@method]);
+3. user use App\ModelName for connecting with database 
+4. Tips
+	a. Get all data: $todos = Todo::all();
+	b. Send to view with data: return view('todos')->with('todos',$todos);
+	c. Form data: use function argument as Request $request then dd($request->all());
+	d. Save data: 
+	    $todo = new Todo;
+    	$todo->todo = $request->todo;
+    	$todo->save();
+    	return redirect()->back();
+	e. Delete data:
+		$todo = Todo::find($id);
+		$todo->delete();
+    	return redirect()->back();
 	
 Model
 Related Keywords: migration, seeder, factory, and resource
-1. Create
+1. Create (Will create Todo class in app directory)
 	a. php artisan make:model Todo	
-2. Migration
+2. Migration (Will update database tables)
 	a. php artisan migrate
-3. Seeder
-4. Factory
+3. Factory (database\factories)
 	a. https://github.com/fzaninotto/Faker
+4. Seeder
+	a. php artisan make:seeder SeederName (will creates a seeder file in database\seeds)
+	b. factory(App\Todo::class,7)->create();
+	c. $this->call(SeederName::class); in in database\seeds\DatabaseSeeder.php
 5. db:seed
+
+Layouting
+1. @yield('content')
+2.
+	@extends('layout')
+	@section('content')
+		Content
+	@stop
+
+Form Handling
+1. {{csrf_field()}}
+2.  action="/todo/create"
+3.  action="{{route('todo.save', ['id' =>  $todo->id])}}"
+
+Tinker
+1. php artisan tinker
+2. $todos = App\Todo::all();
+3. $todo = App\Todo::find(1);
+4. $todo->completed = 0;
+5. $todo->save();
+6. $todo->delete();
+7. factory(App\Todo::class,7)->create();
