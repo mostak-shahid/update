@@ -1,0 +1,34 @@
+Current Lession: 7. Basics Of Commands.mp4
+Tips:
+1. Shortcut
+	a. CTRL + SHIFT + =			| Terminal Zoom In
+	b. CTRL + -					| Terminal Zoom Out 
+	c. CTRL + C					| KILL
+	d. CTRL + Z					| STOP / Suspend
+	e. CTRL + R					| Search commend history
+	f. CTRL + A					| Move cursor to begining
+	g. CTRL + E					| Move cursor to end
+	h. CTRL + Y					| Paste
+	i. CTRL + K					| Cut	
+	j. CTRL + L					| Clear
+2. Commend
+	a. whoami					| to see user type
+	b. hostname					| to see computer user name
+	c. fg (no of job)			| stopped job to forground job 
+	d. clear					| Clear the screen
+	e. exit						| Exit the terminal
+	f. history					| List of used commend
+	g. passwd					| For changing Password of current user
+	h. pwd						| Print working directory
+	i. cd						| Change directory
+	j. mkdir					| Make/Create directory
+	k. touch					| Create File
+	l. ls						| List directory
+	j. cat						| Concatenate and display files
+	k. less						| Show file content
+	l. head - [n]				| Default display first 10 lines of the file
+	m. tail - [n]				| Default display last 10 lines of the fil
+	n. tail - fg				| Follow the end of changing file
+	o. cp						| Copy file
+	p. mv						| Move file
+	q. rm/rmdir					|Remove file and/or directory
