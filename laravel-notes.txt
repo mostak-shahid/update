@@ -1,6 +1,7 @@
 Route
 1. Route::get('/', function () {return view('welcome');});
 2. Route::get('/', ['uses'=>ControllerName@method]);
+3. php artisan route:list
 
 Controller
 1. Create
@@ -57,3 +58,17 @@ Tinker
 5. $todo->save();
 6. $todo->delete();
 7. factory(App\Todo::class,7)->create();
+
+Node and npm
+1. install Node JS
+2. Check node -v
+3. npm install
+4. npm run dev
+
+
+Authentication
+1. composer require laravel/ui or composer require laravel/ui --dev
+2. php artisan ui vue --auth/php artisan ui bootstrap --auth
+3. tips
+	php artisan ui --help
+
