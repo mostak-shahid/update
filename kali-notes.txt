@@ -12,6 +12,7 @@ Tips:
 	i. CTRL + K					| Cut	
 	j. CTRL + L					| Clear
 2. Commend
+	**Command --help
 	a. whoami					| to see user type
 	b. hostname					| to see computer user name
 	c. fg (no of job)			| stopped job to forground job 
@@ -21,14 +22,50 @@ Tips:
 	g. passwd					| For changing Password of current user
 	h. pwd						| Print working directory
 	i. cd						| Change directory
+	i.1. cd ~/ cd				| Take me to home
+	i.2. cd -					| Back to prev directory
 	j. mkdir					| Make/Create directory
+	j.1 mkdir /tmp/testdir
+	j.2. mkdir -p /tmp/dir1/dir2
 	k. touch					| Create File
+	k.1 touch /tmp/testfile
 	l. ls						| List directory
+	Option
+	  1. -l[long listing]
+	  2. -a[list hidden files]
+	  3. -r[list in reverse name]
+	  4. -t[list new files first]
+	  5. -rt[list in reverse time older first]
 	j. cat						| Concatenate and display files
-	k. less						| Show file content
+	k. less						| Show file content Use 'Q' Key to Quit
 	l. head - [n]				| Default display first 10 lines of the file
 	m. tail - [n]				| Default display last 10 lines of the fil
-	n. tail - fg				| Follow the end of changing file
+	n. tail - f					| Follow the end of changing file
 	o. cp						| Copy file
+	Options
+	  1. -r[Copy recursively]
+	  2. -i[Copy interactively]
 	p. mv						| Move file
-	q. rm/rmdir					|Remove file and/or directory
+	q. rm/rmdir					| Remove file and/or directory
+	options 
+	  1. -r[Remove all]
+	  2. -f[Force Remove]
+	  3. -i[Remove interactively]
+3. Package manegement
+**cat /etc/apt/sources.list
+**apt-cache and apt-get can be replaced by apt
+	a. apt-cache search			| Search for package
+	b. apt-cache show			| Show information about package
+	c. apt-get install			| Install package
+		c.1. -y					| Auto answer yes
+	d. apt-get remova			| Remove package (but leave config)
+	e. apt-get purge			| Remove package and config
+	* apt autoremove
+	f. apt-get update			| Resynchronize sources
+	g. apt-get upgrade			| Upgrade all installed packages to newer version
+	h. apt-get dist-upgrade		| Same as upgrade and also upgrade dependencies
+	h.1. apt full-upgrade
+	i. apt edit-sourses
+	i. dpkg -l 					| Find versions of installed application
+	j. dpkg -i package.deb		| Install Package
+	k. dpkg -r package.deb		| Remove Package
