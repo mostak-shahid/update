@@ -1,7 +1,35 @@
+Installing 
+1. laravel new projectname
+2. composer require laravel/ui
+3. php artisan ui vue --auth/php artisan ui bootstrap --auth
+4. npm install
+5. npm run dev/npm run watch
+View
+1. Validation Errors
+	for getting the result we have to set valuidate rules in Controller
+	@if(count($errors)>0)
+		<ul>
+		@foreach($errors->all() as $error)
+			<li class="text-danger">{{$error}}</li>
+		@endforeach					
+		</ul>
+	@endif
 Route
+**Tips it's a good practice to use route name
 1. Route::get('/', function () {return view('welcome');});
 2. Route::get('/', ['uses'=>ControllerName@method]);
+3. Route::get('/home', 'HomeController@index')->name('home');
 3. php artisan route:list
+4. Route Group
+	Route::group(['prefix'=>'admin'], function(){	
+		Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
+		Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
+	});
+5. Middleware
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){	
+	Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
+	Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
+});
 
 Controller
 1. Create
@@ -9,7 +37,18 @@ Controller
 2. Connect
 	a. From Route Route::get('/', ['uses'=>ControllerName@method]);
 3. user use App\ModelName for connecting with database 
-4. Tips
+4. Middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+5. Validate
+	$this->validate($request,[
+		'title'=>'required|max:255',
+		'featured'=>'required|image',
+		'content'=>'required',
+	]);
+x. Tips
 	a. Get all data: $todos = Todo::all();
 	b. Send to view with data: return view('todos')->with('todos',$todos);
 	c. Form data: use function argument as Request $request then dd($request->all());
@@ -36,6 +75,15 @@ Related Keywords: migration, seeder, factory, and resource
 	b. factory(App\Todo::class,7)->create();
 	c. $this->call(SeederName::class); in in database\seeds\DatabaseSeeder.php
 5. db:seed
+6. Relationship need to declire inside model
+	a. hasMany
+		public function posts(){
+			return $this->hasMany('App\Post');
+		}
+	b. belongsTo
+		public function category(){
+			return $this->belongsTo('App\Category');
+		}
 
 Layouting
 1. @yield('content')
@@ -43,7 +91,7 @@ Layouting
 	@extends('layout')
 	@section('content')
 		Content
-	@stop
+	@stop/@endsection
 
 Form Handling
 1. {{csrf_field()}}
@@ -64,11 +112,15 @@ Node and npm
 2. Check node -v
 3. npm install
 4. npm run dev
+5. npm run watch
 
 
 Authentication
 1. composer require laravel/ui or composer require laravel/ui --dev
 2. php artisan ui vue --auth/php artisan ui bootstrap --auth
-3. tips
+3.@if(Auth::check())
+x. tips
 	php artisan ui --help
+	
+
 
