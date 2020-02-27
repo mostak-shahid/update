@@ -1,4 +1,4 @@
-Current Lession: 7. Basics Of Commands.mp4
+Current Lession: 17. APT changes in Kali Linux 2018.mp4
 Tips:
 1. Shortcut
 	a. CTRL + SHIFT + =			| Terminal Zoom In
