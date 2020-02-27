@@ -1,3 +1,4 @@
+Lession: 027 Data validation.mp4
 Installing 
 1. laravel new projectname
 2. composer require laravel/ui
