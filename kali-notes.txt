@@ -1,4 +1,4 @@
-Current Lession: 17. APT changes in Kali Linux 2018.mp4
+Current Lession: 5. Turning your Kali Linux into an SSH server.mp4
 Tips:
 1. Shortcut
 	a. CTRL + SHIFT + =			| Terminal Zoom In
@@ -12,7 +12,7 @@ Tips:
 	i. CTRL + K					| Cut	
 	j. CTRL + L					| Clear
 2. Commend
-	**Command --help
+	**Command --help or -h
 	a. whoami					| to see user type
 	b. hostname					| to see computer user name
 	c. fg (no of job)			| stopped job to forground job 
@@ -51,6 +51,33 @@ Tips:
 	  1. -r[Remove all]
 	  2. -f[Force Remove]
 	  3. -i[Remove interactively]
+	r. File somefile			| Determines format of file
+	s. apropos keyword			| Commands whose one line descriptions contains the keyword
+	t. which keyword
+	u. man -t keyword/ man keyword
+	v. locate
+2.1
+	a. ip addr show/ip a/ifcongig		| Ip Details
+	b. nslookup google.com		| install apt-get install dnsutils -y if not running
+	b.1 cat /etc/resolv.conf
+	c. ip route					| Gateway details
+	d. traceroute google.com	| Gateway details
+	e. netstat -antp			| For checking running services
+		-a						| all
+		-n						| show numarical address
+		-t						| TCP
+		-p						| show the name of the program
+	f. wget filename			| to download, file name like http://192.168.140.128/downloadme
+	g. ssh user@ip				| if put user blank it will use root
+2.1.1
+	Questions
+	a. Difference between IP address and DNS Server/nameserver?
+2.2 Services
+	a. service servicename start	| servicename: ssh, apache2. if the service not available please install through apt
+	b. service servicename restart
+	c. dpkg-reconfigure openssh-server
+2.3 nano/pico
+	a. nano file.name
 3. Package manegement
 **cat /etc/apt/sources.list
 **apt-cache and apt-get can be replaced by apt
@@ -69,3 +96,26 @@ Tips:
 	i. dpkg -l 					| Find versions of installed application
 	j. dpkg -i package.deb		| Install Package
 	k. dpkg -r package.deb		| Remove Package
+4. Archive
+	a. tar c					| Create archive 
+	b. tar r					| Append to archive
+	c. tar t					| List contents of archive
+	d. tar x					| Extract archive
+	e. tar v					| Verbose
+	f. tar f file				| File to use
+	h. gzip						| Classic compression in Linax (extension .tar.gz)
+	i. bzip2					| More Compress more time of compression (extension .tar.bz2)
+	Examples
+		1. Create: 				tar cvf archive.tar file1 file2 dir1 dir2
+		2. List Content:		tar tvf archive.tar
+		3. Add to archive		tar rvf archive.tar file3
+		4. Extract
+		  tar xvf archive.tar
+		  tar xvf archive.tar file
+		  tar xvf archive.tar -C ~/Desktop
+		5. For gzip use z, and for bzip2 use j like 'cvf' will be 'zcvf'
+5. Wildcards
+	a. *  - Matches zero or all characters
+	b. ?  - Matches exactly one character
+	c. [] - Matches any of the characters enclosed in the brackets
+	d. \  - Escape character
