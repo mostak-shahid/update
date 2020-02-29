@@ -1,4 +1,4 @@
-Current Lession: 5. Turning your Kali Linux into an SSH server.mp4
+Current Lession: 7. Maintaining permissions of users.mp4
 Tips:
 1. Shortcut
 	a. CTRL + SHIFT + =			| Terminal Zoom In
@@ -11,9 +11,24 @@ Tips:
 	h. CTRL + Y					| Paste
 	i. CTRL + K					| Cut	
 	j. CTRL + L					| Clear
-2. Commend
+2. User related Commend
+	whoami					| to see user type
+	w						| Who is logged in and what is doing
+	cat /etc/passwd			| See a list of users
+	cat /etc/shadow			| See encrypted password
+	id						| To see group of current user
+	groups username			| To see group of given user
+	cat /etc/group			| To see list of groups
+	adduser username		| Create a new user with home dir
+	useradd username		| Create a new user without home dir
+	userdel username		| Delete user
+	deluser --remove-home username | Delete user with home
+	su username				| To switch user
+	addgroup groupname		| To create group
+	usermod -g groupname username | To change user group
+	delgroup tom			| To Delete group
+2.1 Commend
 	**Command --help or -h
-	a. whoami					| to see user type
 	b. hostname					| to see computer user name
 	c. fg (no of job)			| stopped job to forground job 
 	d. clear					| Clear the screen
