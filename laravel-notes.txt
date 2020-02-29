@@ -1,4 +1,4 @@
-Lession: 027 Data validation.mp4
+Lession: 043 Restoring trashed posts.mp4
 Installing 
 1. laravel new projectname
 2. composer require laravel/ui
@@ -49,7 +49,14 @@ Controller
 		'featured'=>'required|image',
 		'content'=>'required',
 	]);
+6. Saving Files
+
+	$featured = $request->featured;
+	$featured_new_name = time().$featured->getClientOriginalName();
+	$featured->move('uploads/posts',$featured_new_name);
+
 x. Tips
+	x. For getting data we have to include the related model from App directore like use App\Todo
 	a. Get all data: $todos = Todo::all();
 	b. Send to view with data: return view('todos')->with('todos',$todos);
 	c. Form data: use function argument as Request $request then dd($request->all());
@@ -58,6 +65,18 @@ x. Tips
     	$todo->todo = $request->todo;
     	$todo->save();
     	return redirect()->back();
+		
+		or
+		
+        $post = Post::create([
+            'title'=>$request->title,
+            'featured'=>'uploads/posts'.$featured_new_name,
+            'content'=>$request->content,
+            'category_id'=>$request->category_id,
+        ]);	
+		for using this method we have to put some code in related modal like bolew
+		protected $fillable = ['title','featured','content','category_id'];
+		
 	e. Delete data:
 		$todo = Todo::find($id);
 		$todo->delete();
@@ -71,10 +90,16 @@ Related Keywords: migration, seeder, factory, and resource
 	a. php artisan migrate
 3. Factory (database\factories)
 	a. https://github.com/fzaninotto/Faker
-4. Seeder
+4. Seeder(Need to learn More)
+**Seeder files are necessary for default data like admin account
 	a. php artisan make:seeder SeederName (will creates a seeder file in database\seeds)
-	b. factory(App\Todo::class,7)->create();
-	c. $this->call(SeederName::class); in in database\seeds\DatabaseSeeder.php
+	b. factory(App\Todo::class,7)->create() in created seed file;
+	b.1 App\User::create([
+        	'name' => 'System Admin',
+        	'email' => 'mostak.shahid@gmail.com',
+        	'password' => bcrypt('123456789')
+        ]);
+	c. $this->call(SeederName::class); in database\seeds\DatabaseSeeder.php
 5. db:seed
 6. Relationship need to declire inside model
 	a. hasMany
@@ -93,7 +118,8 @@ Layouting
 	@section('content')
 		Content
 	@stop/@endsection
-
+CSS & JS
+	put them into public folder and use like this {{ asset('css/toastr.min.css') }}
 Form Handling
 1. {{csrf_field()}}
 2.  action="/todo/create"
@@ -102,7 +128,7 @@ Form Handling
 Tinker
 1. php artisan tinker
 2. $todos = App\Todo::all();
-3. $todo = App\Todo::find(1);
+3. $todo = App\Todo::find(1);/App\Todo::first();
 4. $todo->completed = 0;
 5. $todo->save();
 6. $todo->delete();
@@ -122,6 +148,25 @@ Authentication
 3.@if(Auth::check())
 x. tips
 	php artisan ui --help
+	
+Session
+	1. Controller
+		for using session we have to 'use Session'
+		for using session 'Session::flash('success', 'Your todo was created')';
+	2. View
+    @if(Session::has('success'))
+        toastr.success("{{Session::get('success')}}");
+    @endif;
+
+SoftDeletes
+	1. in modal at the top 'use Illuminate\Database\Eloquent\SoftDeletes;' 
+	2. and in the function 'use SoftDeletes; protected $dates = ['deleted_at'];'
+	
+Query Builder
+Post::withTrashed()->where('id',$id)->get();
+	
+Necessary Functions
+1. str_slug to create slug from title for using this we have to use composer require laravel/helpers
 	
 
 
