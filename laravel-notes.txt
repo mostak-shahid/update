@@ -1,4 +1,4 @@
-Lession: 043 Restoring trashed posts.mp4
+Lession: 046 Many to many relationships.mp4
 Installing 
 1. laravel new projectname
 2. composer require laravel/ui
