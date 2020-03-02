@@ -1,0 +1,13 @@
+<div class="form-group">[text* your-name class:form-control class:rounded-0 class:required placeholder "Name"]</div>
+<div class="form-group">[tel* tel class:form-control class:rounded-0 class:required placeholder "Phone"]</div>
+<div class="form-group">[email* your-email class:form-control class:rounded-0 class:required placeholder "Email"]</div>
+<div class="form-group">[textarea your-message class:form-control class:rounded-0 placeholder "Message"]</div>
+<div class="form-group quiz-wrap text-center">[quiz quiz-929 class:form-control class:form-quiz class:rounded-0 class:required "1+3=?|4" "5+?=11|6" "1+2=?|3" "?+2=10|8"]</div>
+<div class="position-relative">[submit class:btn class:btn-block class:btn-form "Submit"]</div>
+
+[textarea* your-message x3 class:form-control] <!-- only rows -->
+[textarea* your-message 10x class:form-control] <!-- only columns -->
+[textarea* your-message 10x3 class:form-control] <!-- both -->
+
+use shortcode
+[contact-form-7 id="128" title="Widgets Form" html_id="contact-form-128" html_class="widget-form needs-validation"]
