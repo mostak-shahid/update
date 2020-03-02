@@ -146,3 +146,6 @@ Add rules into it
         }
 Add into Kernel.php $routeMiddleware
 'admin' => \App\Http\Middleware\Admin::class,
+
+We can also use middle ware without route group
+Route::get('/users',['uses'=>'UsersController@index', 'as'=>'users'])->middleware('admin);
