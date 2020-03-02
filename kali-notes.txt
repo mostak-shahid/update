@@ -134,3 +134,15 @@ Tips:
 	b. ?  - Matches exactly one character
 	c. [] - Matches any of the characters enclosed in the brackets
 	d. \  - Escape character
+	
+	
+Middleware
+php artisan make:middleware Admin(it will create a middleware inside midleware folder)
+Add rules into it	
+
+        if (!Auth::user()->admin){
+            Session::flash('info','You do not have permission to access this page.');
+            return redirect()->back();
+        }
+Add into Kernel.php $routeMiddleware
+'admin' => \App\Http\Middleware\Admin::class,
