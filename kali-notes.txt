@@ -135,7 +135,9 @@ Tips:
 	c. [] - Matches any of the characters enclosed in the brackets
 	d. \  - Escape character
 	
-	
+
+
+055 Middleware - Deep dive.mp4	
 Middleware
 php artisan make:middleware Admin(it will create a middleware inside midleware folder)
 Add rules into it	
@@ -149,3 +151,9 @@ Add into Kernel.php $routeMiddleware
 
 We can also use middle ware without route group
 Route::get('/users',['uses'=>'UsersController@index', 'as'=>'users'])->middleware('admin);
+we can alse use middleware into Controller too
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
