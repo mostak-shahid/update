@@ -1,4 +1,4 @@
-Lession: 055 Middleware - Deep dive.mp4
+Lession: 060 Blog site settings.mp4
 Installing 
 1. laravel new projectname
 2. composer require laravel/ui
