@@ -134,3 +134,26 @@ Tips:
 	b. ?  - Matches exactly one character
 	c. [] - Matches any of the characters enclosed in the brackets
 	d. \  - Escape character
+	
+
+
+055 Middleware - Deep dive.mp4	
+Middleware
+php artisan make:middleware Admin(it will create a middleware inside midleware folder)
+Add rules into it	
+
+        if (!Auth::user()->admin){
+            Session::flash('info','You do not have permission to access this page.');
+            return redirect()->back();
+        }
+Add into Kernel.php $routeMiddleware
+'admin' => \App\Http\Middleware\Admin::class,
+
+We can also use middle ware without route group
+Route::get('/users',['uses'=>'UsersController@index', 'as'=>'users'])->middleware('admin);
+we can alse use middleware into Controller too
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
