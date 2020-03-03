@@ -1,4 +1,4 @@
-Lession: 046 Many to many relationships.mp4
+Lession: 052 Creating users.mp4
 Installing 
 1. laravel new projectname
 2. composer require laravel/ui
@@ -75,12 +75,19 @@ x. Tips
             'category_id'=>$request->category_id,
         ]);	
 		for using this method we have to put some code in related modal like bolew
-		protected $fillable = ['title','featured','content','category_id'];
+		protected $fillable = ['title','featured','content','category_id'];		
+		
+        $post->tags()->attach($request->tags); added data to pivat tables
+		$post->tags()->sync($request->tags); 
 		
 	e. Delete data:
 		$todo = Todo::find($id);
 		$todo->delete();
     	return redirect()->back();
+		
+		or 
+		
+		Todo::distroy($id);
 	
 Model
 Related Keywords: migration, seeder, factory, and resource
@@ -101,7 +108,7 @@ Related Keywords: migration, seeder, factory, and resource
         ]);
 	c. $this->call(SeederName::class); in database\seeds\DatabaseSeeder.php
 5. db:seed
-6. Relationship need to declire inside model
+6. Relationship need to declire inside model (Need to learn more)
 	a. hasMany
 		public function posts(){
 			return $this->hasMany('App\Post');
@@ -109,6 +116,14 @@ Related Keywords: migration, seeder, factory, and resource
 	b. belongsTo
 		public function category(){
 			return $this->belongsTo('App\Category');
+		}
+	c. belongsToMany
+		public function posts(){
+			retuen $this->belongsToMany('App\Post');
+		}
+	d. hasOne
+		public function profile(){
+			return $this->hasOne('App\Profile');
 		}
 
 Layouting
