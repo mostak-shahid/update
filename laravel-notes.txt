@@ -57,6 +57,8 @@ Controller
 
 x. Tips
 	x. For getting data we have to include the related model from App directore like use App\Todo
+	x. $next_id = Todo::where('id','>',$todo->id)->min('id');
+	x. $next_id = Todo::where('id','>',$todo->id)->first();
 	a. Get all data: $todos = Todo::all();
 	b. Send to view with data: return view('todos')->with('todos',$todos);
 	c. Form data: use function argument as Request $request then dd($request->all());
