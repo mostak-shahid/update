@@ -5,6 +5,11 @@ Installing
 3. php artisan ui vue --auth/php artisan ui bootstrap --auth
 4. npm install
 5. npm run dev/npm run watch
+Tips
+for getting data to all of the views
+	use View;
+	app\Providers\AppServiceProvider.php->boot()
+	View::share('Variablename',$variable);
 View
 1. Validation Errors
 	for getting the result we have to set valuidate rules in Controller
@@ -59,8 +64,15 @@ x. Tips
 	x. For getting data we have to include the related model from App directore like use App\Todo
 	x. $next_id = Todo::where('id','>',$todo->id)->min('id');
 	x. $next_id = Todo::where('id','>',$todo->id)->first();
+	x. $todos = Todo::orderBy('created_at','desc')->paginate(3); and for links into the view use $todos->links();
 	a. Get all data: $todos = Todo::all();
-	b. Send to view with data: return view('todos')->with('todos',$todos);
+	b. Send to view with data: 
+		1. return view('welcome',['tasks' => $tasks,'foo' => 'Foobar','request' => request('title'),'script' => '<script>alert("Foobar")</script>']);
+		2. return view('welcome', compact('id', 'name', 'password'));
+		3. return view('welcome')->with('name', $value);
+		4. return view('welcome')->with(['foo' => 'Foobar','tasks' => ['Go to the store','Go to the market',],]);
+		5. return view('welcome')->withTasks($tasks)->withFoo('foo');
+		
 	c. Form data: use function argument as Request $request then dd($request->all());
 	d. Save data: 
 	    $todo = new Todo;
@@ -204,6 +216,19 @@ we can alse use middleware into Controller too
 	
 Necessary Functions
 1. str_slug to create slug from title for using this we have to use composer require laravel/helpers
+2. str_limit
+3. Working with date time
+	1. diffForHumans();
+
+Real Life Tools
+1. Share: https://www.addthis.com/
+2. Mail: 
+	composer require spatie/laravel-newsletter
+3. Social Media Login: 
+	https://laravel.com/docs/6.x/socialite
+	https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/
+4. Shopping Cart
+	https://github.com/Crinsane/LaravelShoppingcart
 	
 
 
