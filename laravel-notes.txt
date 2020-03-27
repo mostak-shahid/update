@@ -1,10 +1,11 @@
 Lession: 060 Blog site settings.mp4
 Installing 
 1. laravel new projectname
-2. composer require laravel/ui
-3. php artisan ui vue --auth/php artisan ui bootstrap --auth
-4. npm install
-5. npm run dev/npm run watch
+2. composer require laravel/helpers
+3. composer require laravel/ui
+4. php artisan ui vue --auth/php artisan ui bootstrap --auth
+5. npm install
+6. npm run dev/npm run watch
 Tips
 for getting data to all of the views
 	use View;
@@ -20,6 +21,18 @@ View
 		@endforeach					
 		</ul>
 	@endif
+2.	@if($posts->count()>0)
+		@foreach($posts as $post)
+		your code
+		@endforeach
+    @else
+3. Auth	
+	Auth::id()
+	@if(Auth::check())
+	@endif
+4. Date
+$discussion->created_at->diffForHumans()
+	
 Route
 **Tips it's a good practice to use route name
 1. Route::get('/', function () {return view('welcome');});
@@ -31,7 +44,8 @@ Route
 		Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
 		Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
 	});
-5. Middleware
+5. Route::resource('channels','ChannelsController');
+6. Middleware
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){	
 	Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
 	Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
@@ -153,6 +167,7 @@ Form Handling
 1. {{csrf_field()}}
 2.  action="/todo/create"
 3.  action="{{route('todo.save', ['id' =>  $todo->id])}}"
+4. {{ method_field('PUT') }}
 
 Tinker
 1. php artisan tinker
@@ -213,7 +228,12 @@ we can alse use middleware into Controller too
     {
         $this->middleware('admin');
     }
-	
+
+Notification
+	php artisan make:notification NotificationName    Create a new notification class
+	In Controller
+		use Notification; at top
+		Notification::send($array, new App\Notifications\UserCreated());
 Necessary Functions
 1. str_slug to create slug from title for using this we have to use composer require laravel/helpers
 2. str_limit
@@ -229,6 +249,9 @@ Real Life Tools
 	https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/
 4. Shopping Cart
 	https://github.com/Crinsane/LaravelShoppingcart
+5. Image Resize
+	https://github.com/Intervention/image
+	http://image.intervention.io/getting_started/installation
 	
 
 
