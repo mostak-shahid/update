@@ -168,6 +168,7 @@ Form Handling
 2.  action="/todo/create"
 3.  action="{{route('todo.save', ['id' =>  $todo->id])}}"
 4. {{ method_field('PUT') }}
+5. old(field_name)
 
 Tinker
 1. php artisan tinker
@@ -234,6 +235,10 @@ Notification
 	In Controller
 		use Notification; at top
 		Notification::send($array, new App\Notifications\UserCreated());
+		
+		php artisan make:notification InvoicePaid
+		$user = App\User::first();
+		
 Necessary Functions
 1. str_slug to create slug from title for using this we have to use composer require laravel/helpers
 2. str_limit
