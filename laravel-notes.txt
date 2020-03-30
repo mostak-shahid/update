@@ -50,6 +50,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
 	Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
 	Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
 });
+Route::resource('channel','ChannelController')->middleware('admin');
 
 Controller
 1. Create
@@ -161,6 +162,26 @@ Layouting
 	@section('content')
 		Content
 	@stop/@endsection
+Error page set up like 404
+	return abort(404);
+	
+	https://tutsforweb.com/how-to-create-custom-404-page-laravel/
+	app\Exceptions\Handler.php
+public function render($request, Exception $exception)
+{
+    if ($this->isHttpException($exception)) {
+        if ($exception->getStatusCode() == 404) {
+            return response()->view('404');
+        }
+         
+        if ($exception->getStatusCode() == 500) {
+            return response()->view('500');
+        }
+    }
+ 
+    return parent::render($request, $exception);
+}	
+
 CSS & JS
 	put them into public folder and use like this {{ asset('css/toastr.min.css') }}
 Form Handling
@@ -216,7 +237,8 @@ Add rules into it
 
         if (!Auth::user()->admin){
             Session::flash('info','You do not have permission to access this page.');
-            return redirect()->back();
+            // return redirect()->back();
+			return abort(404);
         }
 Add into Kernel.php $routeMiddleware
 'admin' => \App\Http\Middleware\Admin::class,
