@@ -1,6 +1,6 @@
 Lession: 060 Blog site settings.mp4
 Installing 
-1. laravel new projectname
+1. composer create-project --prefer-dist laravel/laravel blog "5.7.*"
 2. composer require laravel/helpers
 3. composer require laravel/ui
 4. php artisan ui vue --auth/php artisan ui bootstrap --auth
@@ -51,6 +51,28 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
 	Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
 });
 Route::resource('channel','ChannelController')->middleware('admin');
+7. Dynamic Route
+Route::get('{page}', function($slug){
+	$page = \App\Page::findBySlug($slug);
+	// return view('default', compact('page'));
+	// if ($page->slug == 'about-us'){
+	// 	return view('pages.about-us', compact('page'));
+	// }
+	// elseif ($page->slug == 'contact-us'){
+	// 	return view('pages.contact-us', compact('page'));
+	// }
+
+	$view = 'pages.'.$page->slug;	
+	// if (view()->exists($view)){
+	// 	return view($view, compact('page'));
+	// }
+	// return view('default', compact('page'));
+	return view()->first([
+		$view,
+		'default'
+	], compact('page'));
+});
+
 
 Controller
 1. Create
@@ -79,7 +101,7 @@ x. Tips
 	x. For getting data we have to include the related model from App directore like use App\Todo
 	x. $next_id = Todo::where('id','>',$todo->id)->min('id');
 	x. $next_id = Todo::where('id','>',$todo->id)->first();
-	x. $todos = Todo::orderBy('created_at','desc')->paginate(3); and for links into the view use $todos->links();
+	x. $todos = Todo::orderBy('created_at','desc')->paginate(3); and for links into the view use $todos->links()/$todos->appends(request()->except('page'))->links();
 	a. Get all data: $todos = Todo::all();
 	b. Send to view with data: 
 		1. return view('welcome',['tasks' => $tasks,'foo' => 'Foobar','request' => request('title'),'script' => '<script>alert("Foobar")</script>']);
@@ -88,7 +110,10 @@ x. Tips
 		4. return view('welcome')->with(['foo' => 'Foobar','tasks' => ['Go to the store','Go to the market',],]);
 		5. return view('welcome')->withTasks($tasks)->withFoo('foo');
 		
-	c. Form data: use function argument as Request $request then dd($request->all());
+	c. Form data: 
+		use function argument as Request $request then dd($request->all());
+		$request->hasFile('featured')
+		
 	d. Save data: 
 	    $todo = new Todo;
     	$todo->todo = $request->todo;
@@ -109,7 +134,11 @@ x. Tips
         $post->tags()->attach($request->tags); added data to pivat tables
 		$post->tags()->sync($request->tags); 
 		
-	e. Delete data:
+	e. Delete data:	
+		if(file_exists($product->image)){
+			unlink($product->image);
+		}
+		
 		$todo = Todo::find($id);
 		$todo->delete();
     	return redirect()->back();
@@ -117,6 +146,19 @@ x. Tips
 		or 
 		
 		Todo::distroy($id);
+	f. Custom paginaton from array
+		$discussions = $this->paginate($answered,3);
+		
+    public function paginate($items,$perPage){
+        $pageStart = \Request::get('page', 1);
+        // Start displaying items from this number;
+        $offSet = ($pageStart * $perPage) - $perPage; 
+
+        // Get only the items you need using array_slice
+        $itemsForCurrentPage = array_slice($items, $offSet, $perPage, true);
+
+        return new LengthAwarePaginator($itemsForCurrentPage, count($items), $perPage,Paginator::resolveCurrentPage(), array('path' => Paginator::resolveCurrentPath()));
+    }
 	
 Model
 Related Keywords: migration, seeder, factory, and resource
@@ -190,6 +232,17 @@ Form Handling
 3.  action="{{route('todo.save', ['id' =>  $todo->id])}}"
 4. {{ method_field('PUT') }}
 5. old(field_name)
+6. $errors->has('field_name')
+7. error.blade.php
+	@if ($errors->any())
+	<div class="bg-danger text-white">
+		<ul>
+			@foreach($errors->all() as $error)
+			<li>{{$error}}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
 
 Tinker
 1. php artisan tinker
@@ -258,8 +311,16 @@ Notification
 		use Notification; at top
 		Notification::send($array, new App\Notifications\UserCreated());
 		
+		use App\Notifications\InvoicePaid;
+		
 		php artisan make:notification InvoicePaid
 		$user = App\User::first();
+		$user->notify(new InvoicePaid($invoice));
+Mail
+	php artisan make:mail EmailClass           Create a new email class
+	
+	Mail::to('mostak.shahid@gmail.com')->send(new \App\Mail\PurchaseSuccessful)
+
 		
 Necessary Functions
 1. str_slug to create slug from title for using this we have to use composer require laravel/helpers
@@ -276,9 +337,16 @@ Real Life Tools
 	https://www.tutsmake.com/laravel-6-google-login-tutorial-with-socialite-demo-example/
 4. Shopping Cart
 	https://github.com/Crinsane/LaravelShoppingcart
+	
+	https://github.com/darryldecode/laravelshoppingcart
+	
 5. Image Resize
 	https://github.com/Intervention/image
 	http://image.intervention.io/getting_started/installation
+	
+	composer require intervention/image
+	
+	
 	
 
 
