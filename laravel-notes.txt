@@ -344,7 +344,9 @@ Real Life Tools
 	https://github.com/Intervention/image
 	http://image.intervention.io/getting_started/installation
 	
-	composer require intervention/image
+	https://github.com/shawnsandy/img-fly
+	
+	
 	
 	
 	
