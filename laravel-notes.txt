@@ -6,6 +6,7 @@ Installing
 4. php artisan ui vue --auth/php artisan ui bootstrap --auth
 5. npm install
 6. npm run dev/npm run watch
+7. php artisan serve / php artisan serve --port=8080
 Tips
 for getting data to all of the views
 	use View;
@@ -38,20 +39,22 @@ Route
 1. Route::get('/', function () {return view('welcome');});
 2. Route::get('/', ['uses'=>ControllerName@method]);
 3. Route::get('/home', 'HomeController@index')->name('home');
-3. php artisan route:list
-4. Route Group
+4. Route::get('/home/{variable}', 'HomeController@index')->name('home');
+5. Route::get('/home/{optional-variable?}', 'HomeController@index')->name('home');
+6. php artisan route:list
+7. Route Group
 	Route::group(['prefix'=>'admin'], function(){	
 		Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
 		Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
 	});
-5. Route::resource('channels','ChannelsController');
-6. Middleware
+8. Route::resource('channels','ChannelsController');
+9. Middleware
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){	
 	Route::get('/post/create', ['uses'=>'PostsController@create', 'as'=>'post.create']);
 	Route::post('/post/store',['uses'=>'PostsController@store', 'as'=>'post.store']);
 });
 Route::resource('channel','ChannelController')->middleware('admin');
-7. Dynamic Route
+10. Dynamic Route
 Route::get('{page}', function($slug){
 	$page = \App\Page::findBySlug($slug);
 	// return view('default', compact('page'));
@@ -180,6 +183,10 @@ Related Keywords: migration, seeder, factory, and resource
 	c. $this->call(SeederName::class); in database\seeds\DatabaseSeeder.php
 5. db:seed
 6. Relationship need to declire inside model (Need to learn more)
+	Tips: 
+		1. One To One (hasOne - belongsTo) Example: User can hasOne Profile, and a Profile can belongsTo User
+		2. One To Many (hasMany - belongsTo) Example: Category can hasMany Post, and a Post can belongsTo Category
+		3. Many To Many (belongsToMany - belongsToMany) Example: Tag can belongsToMany Post, and Post can belongsTo Tag
 	a. hasMany
 		public function posts(){
 			return $this->hasMany('App\Post');
@@ -196,7 +203,16 @@ Related Keywords: migration, seeder, factory, and resource
 		public function profile(){
 			return $this->hasOne('App\Profile');
 		}
-
+Migration
+	Create
+		php artisan make:migration create_users_table
+	Add Column
+		php artisan make:migration add_is_admin_column_to_users_table --table-"users"
+		up function 
+			$table->boolean('is_admin')->default(0);
+		down function
+			$table->dropColumn('is_admin');
+	
 Layouting
 1. @yield('content')
 2.
@@ -280,6 +296,11 @@ Session
 SoftDeletes
 	1. in modal at the top 'use Illuminate\Database\Eloquent\SoftDeletes;' 
 	2. and in the function 'use SoftDeletes; protected $dates = ['deleted_at'];'
+	3. in migration we need to add $table->SoftDeletes();
+	4. down function of mirgation $table->dropColumn('deleted_at');
+	5. Getting them Post::withTrashed()
+	6. Restoring restore()
+	7. Permanently forceDelete()
 	
 Query Builder
 Post::withTrashed()->where('id',$id)->get();
@@ -343,6 +364,19 @@ Real Life Tools
 5. Image Resize
 	https://github.com/Intervention/image
 	http://image.intervention.io/getting_started/installation
+Uses
+Route::get('/assets/{img}/{width?}/{height?}',function($img, $h=200, $w=200){
+    $arr = explode('.',$img);
+    $ext = end($arr);
+    return \Image::make(asset($img))->resize($h, $w)->response($ext);
+    // return \Image::make(public_path("/assets/$img"))->resize($h, $w)->response($ext);
+})->name('assets');
+
+                <img src="{!! url('assets', ['tes.jpg']) !!}">
+                <img src="{!! url('assets', ['tes.jpg',150,100]) !!}">
+
+
+
 	
 	https://github.com/shawnsandy/img-fly
 	
