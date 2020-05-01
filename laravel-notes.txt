@@ -31,8 +31,10 @@ View
 	Auth::id()
 	@if(Auth::check())
 	@endif
-4. Date
-$discussion->created_at->diffForHumans()
+4. Date Time
+$discussion->created_at->diffForHumans();
+->diffInDays();
+->format('d/m/Y');
 	
 Route
 **Tips it's a good practice to use route name
@@ -148,7 +150,7 @@ x. Tips
 		
 		or 
 		
-		Todo::distroy($id);
+		Todo::destroy($id);
 	f. Custom paginaton from array
 		$discussions = $this->paginate($answered,3);
 		
@@ -187,6 +189,7 @@ Related Keywords: migration, seeder, factory, and resource
 		1. One To One (hasOne - belongsTo) Example: User can hasOne Profile, and a Profile can belongsTo User
 		2. One To Many (hasMany - belongsTo) Example: Category can hasMany Post, and a Post can belongsTo Category
 		3. Many To Many (belongsToMany - belongsToMany) Example: Tag can belongsToMany Post, and Post can belongsTo Tag
+		4. j table a onno table er id column thakbe oita normally belongs to, 2 table er jonno alada table thakle on table gulo belongsToMany, j table a onno table er column thake na on table a hasOne or hasMany hobe 
 	a. hasMany
 		public function posts(){
 			return $this->hasMany('App\Post');
@@ -243,7 +246,7 @@ public function render($request, Exception $exception)
 CSS & JS
 	put them into public folder and use like this {{ asset('css/toastr.min.css') }}
 Form Handling
-1. {{csrf_field()}}
+1. {{csrf_field()}}/@csrf
 2.  action="/todo/create"
 3.  action="{{route('todo.save', ['id' =>  $todo->id])}}"
 4. {{ method_field('PUT') }}
@@ -259,6 +262,18 @@ Form Handling
 		</ul>
 	</div>
 	@endif
+
+Laravel MIX
+Location webpack.mix.js
+mix.styles([
+     // 'public/css/vendor/normalize.css',
+     'resources/assets/css/font-icons/entypo/css/entypo.css'
+    ], 'public/css/fonts.css');
+mix.scripts([
+    'public/js/admin.js',
+    'public/js/dashboard.js'
+], 'public/js/all.js');
+
 
 Tinker
 1. php artisan tinker
@@ -295,7 +310,7 @@ Session
 
 SoftDeletes
 	1. in modal at the top 'use Illuminate\Database\Eloquent\SoftDeletes;' 
-	2. and in the function 'use SoftDeletes; protected $dates = ['deleted_at'];'
+	2. and in the function 'use SoftDeletes;'
 	3. in migration we need to add $table->SoftDeletes();
 	4. down function of mirgation $table->dropColumn('deleted_at');
 	5. Getting them Post::withTrashed()
@@ -348,6 +363,7 @@ Necessary Functions
 2. str_limit
 3. Working with date time
 	1. diffForHumans();
+	2. ->format('Y-m-d');
 
 Real Life Tools
 1. Share: https://www.addthis.com/
@@ -369,16 +385,16 @@ Route::get('/assets/{img}/{width?}/{height?}',function($img, $h=200, $w=200){
     $arr = explode('.',$img);
     $ext = end($arr);
     return \Image::make(asset($img))->resize($h, $w)->response($ext);
-    // return \Image::make(public_path("/assets/$img"))->resize($h, $w)->response($ext);
 })->name('assets');
 
                 <img src="{!! url('assets', ['tes.jpg']) !!}">
                 <img src="{!! url('assets', ['tes.jpg',150,100]) !!}">
 
+6. Datatables
+composer require yajra/laravel-datatables-oracle
+Yajra\Datatables\DatatablesServiceProvider::class,
+'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
-
-	
-	https://github.com/shawnsandy/img-fly
 	
 	
 	
