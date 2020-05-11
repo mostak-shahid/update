@@ -92,9 +92,9 @@ Controller
     }
 5. Validate
 	$this->validate($request,[
-		'title'=>'required|max:255',
-		'featured'=>'required|image',
-		'content'=>'required',
+		'title'=>array('required','max:255'),
+		'featured'=>array('required','image'),
+		'content'=>array('required'),
 	]);
 6. Saving Files
 
