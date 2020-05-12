@@ -22,6 +22,8 @@ View
 		@endforeach					
 		</ul>
 	@endif
+	---------------------------------------
+	{{$errors->first('phone')}}
 2.	@if($posts->count()>0)
 		@foreach($posts as $post)
 		your code
@@ -101,6 +103,13 @@ Controller
 	$featured = $request->featured;
 	$featured_new_name = time().$featured->getClientOriginalName();
 	$featured->move('uploads/posts',$featured_new_name);
+	---------------------------------------------------------------------------------	
+	if ($request->hasFile('featured')){
+		$featured = $request->featured;
+		$featured_new_name = time().$featured->getClientOriginalName();
+		$featured->move('uploads/posts',$featured_new_name); 
+		$post->featured =  'uploads/posts/'.$featured_new_name;        
+	}
 
 x. Tips
 	x. For getting data we have to include the related model from App directore like use App\Todo
