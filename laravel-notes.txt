@@ -404,6 +404,8 @@ composer require yajra/laravel-datatables-oracle
 Yajra\Datatables\DatatablesServiceProvider::class,
 'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
+C:\xampp\htdocs\laravel\ecommerce\app\Http\Controllers\CategoriesController.php
+
 	
 	
 	
