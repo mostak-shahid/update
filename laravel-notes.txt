@@ -215,6 +215,7 @@ Related Keywords: migration, seeder, factory, and resource
 		public function profile(){
 			return $this->hasOne('App\Profile');
 		}
+	e. return $this->belongsTo('App\Media', 'this_tableColunm', 'that_tableColumn');
 Migration
 	Create
 		php artisan make:migration create_users_table
