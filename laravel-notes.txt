@@ -7,6 +7,20 @@ Installing
 5. npm install
 6. npm run dev/npm run watch
 7. php artisan serve / php artisan serve --port=8080
+
+Downloaded Project
+Step:
+1. download or clone project
+2. Go to the folder application using cd
+3. Run composer install on your cmd or terminal
+4. Copy .env.example file to .env on root folder. 
+    You can type copy .env.example .env if using command prompt Windows 
+     or cp .env.example .env if using terminal Ubuntu
+5. Open your .env file and change the database name (DB_DATABASE)
+6. Run php artisan key:generate
+7. Run php artisan migrate
+8.Run php artisan serve
+
 Tips
 for getting data to all of the views
 	use View;
