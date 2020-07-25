@@ -12,23 +12,58 @@ Tips:
 	i. CTRL + K					| Cut	
 	j. CTRL + L					| Clear
 2. User related Commend
-	whoami					| to see user type
-	w						| Who is logged in and what is doing
-	cat /etc/passwd			| See a list of users
-	cat /etc/shadow			| See encrypted password
-	id						| To see group of current user
-	groups username			| To see group of given user
-	cat /etc/group			| To see list of groups
-	adduser username		| Create a new user with home dir
-	useradd username		| Create a new user without home dir
-	userdel username		| Delete user
-	deluser --remove-home username | Delete user with home
-	su username				| To switch user
-	addgroup groupname		| To create group
-	usermod -g groupname username | To change user group
-	delgroup tom			| To Delete group
+	whoami							| to see user type
+	w								| Who is logged in and what is doing
+	cat /etc/passwd					| See a list of users
+	cat /etc/shadow					| See encrypted password
+	id								| To see group of current user
+	groups username					| To see group of given user
+	cat /etc/group					| To see list of groups
+	adduser username				| Create a new user with home dir
+	useradd username				| Create a new user without home dir
+	userdel username				| Delete user
+	deluser --remove-home username	| Delete user with home
+	su username						| To switch user
+	addgroup groupname				| To create group
+	usermod -g groupname username 	| To change user group
+	delgroup tom					| To Delete group
 2.1 Commend
 	**Command --help or -h
+	2.1.1. listing commends
+		ls
+			drwxr-xr-x 2 root root  4096 Jul 23 06:55 100s
+			-rw-r--r-- 1 root root 20480 Jul 23 06:43 backup.tar
+			d = directory
+			- = file
+			r = read
+			w = write
+			x = exicutable
+			d/-[(3-letter)owner][(3-letter)group][(3-letter)other] x owner group
+
+		tree
+	2.1.2. Read File
+		cat
+		less
+		head
+		tail
+		echo "text to write" > filename
+	2.1.3 Editors Commands
+		vi,vim,emacs,neno,pico
+		nano is clone of pico
+		nano filename			| will open the file in editor
+		Shortcut
+			CTRL + W			| For search
+				ALT + W			| For findingf the next word		
+	2.1.4 Networking Commands
+		ifconfig
+		nslookup website(nslookup google.com)	| Getting DNS Address
+		cat /etc/resolv.conf					| Getting DNS Address
+		ip route								| Getting Gateway Address
+		traceroute website
+		wget filename							| to download, file name like http://192.168.140.128/downloadme
+	2.1.5 Service Commands
+		server apache2 start
+	a. ifconfig					|
 	b. hostname					| to see computer user name
 	c. fg (no of job)			| stopped job to forground job 
 	d. clear					| Clear the screen
@@ -58,19 +93,24 @@ Tips:
 	n. tail - f					| Follow the end of changing file
 	o. cp						| Copy file
 	Options
-	  1. -r[Copy recursively]
-	  2. -i[Copy interactively]
+	  1. -r[Copy recursively]	| Copy dir with files and folder
+	  2. -i[Copy interactively]	| Asking for over writting
+	  examples: 
+	  cp source ~/Documents		| Copy to Documents 
+	  cp source .				| Copy to current folder
+	  cp source ..				| Copy to current folder's parent folder
 	p. mv						| Move file
 	q. rm/rmdir					| Remove file and/or directory
 	options 
 	  1. -r[Remove all]
 	  2. -f[Force Remove]
 	  3. -i[Remove interactively]
-	r. File somefile			| Determines format of file
+	r. file somefile			| Determines format of file
 	s. apropos keyword			| Commands whose one line descriptions contains the keyword
 	t. which keyword
 	u. man -t keyword/ man keyword
 	v. locate
+	
 2.1
 	a. ip addr show/ip a/ifcongig		| Ip Details
 	b. nslookup google.com		| install apt-get install dnsutils -y if not running
@@ -87,6 +127,7 @@ Tips:
 2.1.1
 	Questions
 	a. Difference between IP address and DNS Server/nameserver?
+	b. IP Address, ports, services, FTP Server, Web Server, SSH Server
 2.2 Services
 	a. service servicename start	| servicename: ssh, apache2. if the service not available please install through apt
 	b. service servicename restart
@@ -99,7 +140,7 @@ Tips:
 	a. apt-cache search			| Search for package
 	b. apt-cache show			| Show information about package
 	c. apt-get install			| Install package
-		c.1. -y					| Auto answer yes
+		c.1. apt-get -y install	| Auto answer yes
 	d. apt-get remova			| Remove package (but leave config)
 	e. apt-get purge			| Remove package and config
 	* apt autoremove
@@ -134,6 +175,61 @@ Tips:
 	b. ?  - Matches exactly one character
 	c. [] - Matches any of the characters enclosed in the brackets
 	d. \  - Escape character
+	
+6. Getting Help
+	-file filename (file archive.tar.bz2)
+	-apropos command (apropos gzip)
+	-which command (which gzip)				| Application directory
+	-man -k zgip							| List of menuals
+	-man command(man gzip)					| Manual for this command (go to top press G, bottom SHIFT + G, UP DOWN, PAGE UP PAGE DOWN, for search press / type and press ENTER, Press N for next and SHIFT + N for previous and Q for )
+	-commend --help(zgip --help)			| Quick help
+	-commend -h(zgip --h)					| Quick help
+7. File permissions
+	chmod command
+	u = owner
+	g = group
+	o = other
+	a = all
+	+ = add permissions
+	- = removi permissions
+	= = only permissions
+	r = read
+	w = write
+	x = exicutable
+	
+	chmod ugoa +-= rwx filename
+	
+7. Sudo Commands
+	sudo -l						| Permited command list you can run as root
+	sudo command (sudo nmap)	| Run a command as root
+	cat /etc/sudoers/
+8. Process Command
+	CTRL + C					| KILL
+	
+	ps							| List processes of current session
+	ps -f						| List processes with full formatting
+	ps -e 						| List all Processes
+	ps -u [username]			| List processes of username
+	ps -p [PID]					| Display information PID
+	kill [PID]					| To stop a process
+	kill -9 [PID]				| To stop a process forfully
+	
+	command &					| To put a job background
+	nohup command &				| To put a job background
+	jobs						| List of backgrounf jobs
+	fg [n]
+	
+	tmux
+	CTRL + B then D				| Detach tmux
+	tmux list-session			| List Session
+	tmux attach					| Attach Session
+
+9. Redirection
+	> - Directs command output to file. Creates file automatically and overwrites file if it exits.
+	>> - Appends command output to file.
+	< - Directs content of file to command.
+	
+	
 	
 
 
