@@ -389,6 +389,7 @@ Mail
 	Mail::to('mostak.shahid@gmail.com')->send(new \App\Mail\PurchaseSuccessful)
 	
 https://www.youtube.com/watch?v=Ny-mloJuoAI
+https://www.youtube.com/watch?v=rn0BHdqrock
 	
 User with email varification
 	App/User: class User extends Authenticatable change to class User extends Authenticatable implements MustVerifyEmail
