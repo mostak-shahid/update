@@ -25,7 +25,19 @@ Tips
 for getting data to all of the views
 	use View;
 	app\Providers\AppServiceProvider.php->boot()
-	View::share('Variablename',$variable);
+	View::share('Variablename',$variable); //View::share('website', 'test');
+
+for getting functionality to all of the views	
+a) Create helpers.php file inside app folder, where you can place all helper functions. Also use function_exists check to avoid errors
+b) In composer.json file put in autoload block:
+	"autoload" : {
+        "files" : [
+            "app/helpers.php"
+        ]
+    }
+c) Run composer dump-autoload
+Ref: https://laracasts.com/discuss/channels/laravel/where-i-put-my-custom-functions-to-be-accessed-in-view-laravel-53?page=1
+
 View
 1. Validation Errors
 	for getting the result we have to set valuidate rules in Controller
