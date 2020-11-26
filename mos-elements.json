@@ -1,7 +1,7 @@
 {
 	"name": "Mos Elements",
 	"version": "1.0.0",
-	"download_url": "https://github.com/mostak-shahid/mos-elements/archive/master.zip",
+	"download_url": "https://github.com/mostak-shahid/mos-elements/archive/main.zip",
 
 	"homepage": "http://mostak.belocal.today/plugins/mos-elements",
 	"requires": "4.5",
