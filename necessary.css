@@ -1,0 +1,7 @@
+/*gradient test css*/
+selector {
+    background: linear-gradient(180deg, #ff8a00, #da1b60); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
