@@ -5,3 +5,25 @@ selector {
     -webkit-text-fill-color: transparent;
     
 }
+/*CSS Variable*/
+:root {
+  --first-color: #16f;
+  --second-color: #ff7;
+}
+
+#firstParagraph {
+  background-color: var(--first-color);
+  color: var(--second-color);
+}
+/*CSS Numbering*/
+h3 {
+  counter-increment: h3;
+  display: list-item;
+}
+
+h3::marker {
+  display: list-item;
+  content: "#" counter(h3) " ";
+  color: lightsalmon;
+  font-weight: bold;
+}
