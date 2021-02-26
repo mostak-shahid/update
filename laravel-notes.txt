@@ -50,6 +50,7 @@ View
 	@endif
 	---------------------------------------
 	{{$errors->first('phone')}}
+	$errors->has('username')
 2.	@if($posts->count()>0)
 		@foreach($posts as $post)
 		your code
