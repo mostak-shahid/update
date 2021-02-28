@@ -292,7 +292,7 @@ Form Handling
 1. {{csrf_field()}}/@csrf
 2.  action="/todo/create"
 3.  action="{{route('todo.save', ['id' =>  $todo->id])}}"
-4. {{ method_field('PUT') }}
+4. {{ method_field('PUT') }}/@method('PUT')
 5. old('field_name')
 6. $errors->has('field_name')
 7. {{ $errors->first('field_name') }}
