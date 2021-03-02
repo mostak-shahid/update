@@ -5,3 +5,56 @@ SELECT u.id, u.name, u.username, group_concat(CASE p.option WHEN 'left_point' TH
     LEFT JOIN profiles p
     ON    u.id = p.user_id
 GROUP BY u.id
+
+
+#mysql get all parent with level
+SELECT ID.level, DATA.* FROM( 
+    SELECT
+        @child_id as _child_id, 
+
+        (   SELECT @child_id := user_id 
+
+            FROM trees 
+
+            WHERE child_id = @child_id 
+
+        ) as _pid, 
+
+        @l := @l+1 as level
+
+    FROM trees, 
+
+        (SELECT @child_id := 5, @l := 0 ) b 
+
+    WHERE @child_id > 0 
+
+) ID, trees AS DATA 
+
+WHERE ID._child_id = DATA.child_id 
+
+ORDER BY level
+
+#mysql get all child with level
+SELECT ID.level, DATA.* FROM( 
+    SELECT
+        @child_ids as _child_ids, 
+
+        (   SELECT @child_ids := GROUP_CONCAT(child_id) 
+
+            FROM trees
+
+            WHERE FIND_IN_SET(user_id, @child_ids)
+        ) as cids, 
+        @l := @l+1 as level
+
+    FROM trees, 
+
+        (SELECT @child_ids :='8', @l := 0 ) b 
+
+    WHERE @child_ids IS NOT NULL
+
+) id, trees AS DATA
+
+WHERE FIND_IN_SET(DATA.child_id, ID._child_ids)
+
+ORDER BY level, id
