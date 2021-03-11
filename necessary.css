@@ -5,6 +5,13 @@ selector {
     -webkit-text-fill-color: transparent;
     
 }
+/*Image text css*/
+selector {
+    background-image: url(images/home-startup-text-bg.jpg);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
 /*CSS Variable*/
 :root {
   --first-color: #16f;
