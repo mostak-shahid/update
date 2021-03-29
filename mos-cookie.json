@@ -5,12 +5,12 @@
 
 	"homepage": "http://mdmostakshahid.com/plugins/mos-faq",
 	"requires": "4.5",
-	"tested": "4.9.8",
-	"last_updated": "2018-11-11 00:00:00",
+	"tested": "5.7",
+	"last_updated": "2021-03-29 00:00:00",
 	"upgrade_notice": "Here's why you should upgrade...",
 
 	"author": "Md. Mostak Shahid",
-	"author_homepage": "http://mostak.belocal.today/",
+	"author_homepage": "http://mdmostakshahid.com/",
 
 	/*"sections": {
 		"description": "<p>FAQ plugin that gives you a chance to make, sort out and expose your FAQs (frequently asked questions) in a matter of seconds through your WordPress administrator board. Select from FAQ designs and styles.</p> <h4>FAQ KEY FEATURES</h4> <ul> <li>Mos FAQs, with unlimited tag and category support</li> <li>Create FAQ categories and tags</li> <li>Create FAQ posts and assign categories and tags to them</li> <li>Easy design layout to style your FAQ posts</li> <li>For advanced user additional CSS and JS input panel for adding custom scripts</li> <li>And the most important thing it will not add any additional time on your page load time</li> </ul> <h4>SHORTCODE</h4> <code>[mos_faq]</code><p>Simply insert the above shortcode into any page to display your FAQs.</p>",
@@ -20,13 +20,13 @@
 	},*/
 	
 	"icons" : {
-		"1x" : "http://mostak.belocal.today/wp-content/uploads/2018/11/faq-logo-128.png",
-		"2x" : "http://mostak.belocal.today/wp-content/uploads/2018/11/faq-logo-256.png"
+		"1x" : "http://mdmostakshahid.com/wp-content/uploads/2018/11/faq-logo-128.png",
+		"2x" : "http://mdmostakshahid.com/wp-content/uploads/2018/11/faq-logo-256.png"
     },
 
 	"banners": {
-		"low": "http://mostak.belocal.today/wp-content/uploads/2018/11/faq-banner-772x250.jpg",
-		"high": "http://mostak.belocal.today/wp-content/uploads/2018/11/faq-banner-1544x500.jpg"
+		"low": "http://mdmostakshahid.com/wp-content/uploads/2018/11/faq-banner-772x250.jpg",
+		"high": "http://mdmostakshahid.com/wp-content/uploads/2018/11/faq-banner-1544x500.jpg"
 	},
 
 	"rating": 90,
