@@ -35,6 +35,15 @@ h3::marker {
   font-weight: bold;
 }
 
-  /* Add the blur effect */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+/* Add the blur effect */
+filter: blur(8px);
+-webkit-filter: blur(8px);
+
+/* Flex box fixed width Element */
+
+.fixed part {
+    flex: 0 0 100px;
+}
+.resixed part{
+    flex: 1;   
+}
