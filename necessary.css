@@ -39,10 +39,12 @@ h3::marker {
 filter: blur(8px);
 -webkit-filter: blur(8px);
 
+
 /* BG BLUR */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 /* BG BLUR */
+
 
 /* Flex box fixed width Element */
 
