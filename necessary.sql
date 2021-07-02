@@ -40,5 +40,25 @@ ORDER BY level, id
 
 
 
+DB::table("users")->select('users.*',DB::raw(GROUP_concat(CASE profiles.key WHEN 'profile_photo' THEN profiles.value END)))->join('profiles','users.id', '=', 'profiles.user_id')->groupBy('users.id')->get()
 
 
+DB::table('customers')
+  ->leftJoin('contacts', function ($join) {
+      $join->on('contacts.customer_id', '=', 'customers.id')
+              ->where(DB::raw('length(contacts.email)'), '>', 4);
+  })
+  ->select([
+      'customers.id',
+      'customers.name',
+      DB::raw('group_concat(distinct contacts.email separator ", ") AS contact_emails'),
+  ])
+  ->groupBy('customers.id')
+  ->get();
+  
+  
+  $assignment_details = $assignment->raw_plan()
+                                ->select('raw_plans.*', DB::raw('group_concat(name) as names'))
+                                ->where('assignment_id', 1)
+                                ->groupBy('flag')
+                                ->get();
