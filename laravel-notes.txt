@@ -124,12 +124,27 @@ Controller
 		'title'=>array('required','max:255'),
 		'featured'=>array('required','image'),
 		'content'=>array('required'),
+		'dob'=>array("nullable","max:255","regex:/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/", function ($attribute, $value, $fail){
+                $signup_age_limit_status = Setting::where('option', 'signup_age_limit_status')->first()->value;
+                $signup_age_limit = Setting::where('option', 'signup_age_limit')->first()->value;
+                $age = date_diff(date_create($value), date_create('today'))->y;
+                if ($signup_age_limit_status && $signup_age_limit && $age < $signup_age_limit) {
+                    $fail('Your minimun age should be ' . $signup_age_limit . '.');
+                }
+
+            }),
+		'buseness_logo' => array("image","max:2000",function ($attribute, $value, $fail) use($request) {
+                if ($request->role == 'merchant' && !$value ) {
+                    $fail('Please enter Business Logo.');
+                }
+            }),
 	]);
 	
 	$validate = Validator::make($data, [
 		'has_appointment' => 'required|bool',
 		'appointment_date' => 'exclude_if:has_appointment,false|required|date',
 		'doctor_name' => 'exclude_if:has_appointment,false|required|string',
+		
 	]);
 6. Saving Files
 
@@ -206,7 +221,15 @@ x. Tips
 
         return new LengthAwarePaginator($itemsForCurrentPage, count($items), $perPage,Paginator::resolveCurrentPage(), array('path' => Paginator::resolveCurrentPath()));
     }
-	
+
+$merchants = User::where('role','merchant')->get();
+$merchants = User::with('profiles')->where('role','merchant')->get();
+$merchants = DB::table("users")->get()->toArray();
+$merchants = DB::table("users")->select('users.*', DB::raw('group_concat(case profiles.key when "address_line_1" then profiles.value end) as Custom'))->leftJoin("profiles", 'users.id', '=', 'profiles.user_id')->groupBy('users.id')->where('role','merchant')->get()->toArray();
+$query = "SELECT u.*, group_concat(CASE p.key WHEN 'address_line_1' THEN p.value END) address_line_1, group_concat(CASE p.key WHEN 'address_line_2' THEN p.value END) address_line_2 FROM users u LEFT JOIN profiles p ON u.id = p.user_id GROUP BY u.id";
+$merchants  = DB::select(DB::raw($query));	
+
+
 Model
 Related Keywords: migration, seeder, factory, and resource
 1. Create (Will create Todo class in app directory)
@@ -452,3 +475,11 @@ Yajra\Datatables\DatatablesServiceProvider::class,
 'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
 C:\xampp\htdocs\laravel\ecommerce\app\Http\Controllers\CategoriesController.php
+
+
+Menu management
+{{ (request()->is('admin/merchants*')) ? 'menu-open' : '' }}
+request()->routeIs('admin.cities*')
+Route::named('admin.cities*')
+{{ (request()->segment(2) == 'home') ? 'active' : '' }}
+{{ (request()->segment(2) == 'home') ? 'active' : '' }}

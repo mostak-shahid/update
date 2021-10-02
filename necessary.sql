@@ -1,9 +1,5 @@
 #MySQL Vertical Horizontal Join
-SELECT u.id, u.name, u.username, group_concat(CASE p.option WHEN 'left_point' THEN p.value END) left_point, group_concat(CASE p.option WHEN 'right_point' THEN p.value END) right_point
-	FROM users u
-    LEFT JOIN profiles p
-    ON    u.id = p.user_id
-GROUP BY u.id
+SELECT u.id, u.name, u.username, group_concat(CASE p.key WHEN 'address_line_1' THEN p.value END) address_line_1, group_concat(CASE p.key WHEN 'address_line_2' THEN p.value END) address_line_2 FROM users u LEFT JOIN profiles p ON u.id = p.user_id GROUP BY u.id
 
 
 #mysql get all parent with level
@@ -51,7 +47,7 @@ DB::table('customers')
   ->select([
       'customers.id',
       'customers.name',
-      DB::raw('group_concat(distinct contacts.email separator ", ") AS contact_emails'),
+      DB::raw('-(distinct contacts.email separator ", ") AS contact_emails'),
   ])
   ->groupBy('customers.id')
   ->get();
@@ -62,3 +58,8 @@ DB::table('customers')
                                 ->where('assignment_id', 1)
                                 ->groupBy('flag')
                                 ->get();
+                                
+                                
+                                
+DB::table('users')->select('users.name',DB::raw('case profiles.key when "address_line_1" then profiles.value end as C
+ustomText'))->join('profiles','users.id','=','profiles.user_id')->get();
