@@ -1,6 +1,6 @@
 {
 			"name" : "Mos CSV Import/Export",
-			"version" : "1.0.0",
+			"version" : "1.0.1",
 			"download_url" : "https://github.com/mostak-shahid/mos-csv-import-export/archive/master.zip",
 			"sections" : {
 				"description" : "This is the basic version of Mos CSV Import/Export."
