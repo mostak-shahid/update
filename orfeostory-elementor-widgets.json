@@ -1,0 +1,52 @@
+{
+	"name": "Orfeostory Elementor Widgets",
+	"version": "0.0.1",
+	"download_url": "https://github.com/mostak-shahid/orfeostory-elementor-widgets/archive/refs/heads/main.zip",
+
+	"homepage": "https://www.orfeostory.com/",
+	"requires": "4.5",
+	"tested": "5.8.2",
+	"last_updated": "2018-11-11 00:00:00",
+	"upgrade_notice": "Here's why you should upgrade...",
+
+	"author": "Orfeostory Team",
+	"author_homepage": "https://www.orfeostory.com/",
+
+	"sections": {
+		"description": "(Required) Plugin description. Basic HTML can be used in all sections.",
+		"installation": "<p>This section describes how to install the plugin and get it working.</p> <ul> <li>Upload the 'mos-plugin' folder to the `/wp-content/plugins/` directory or install via the WP admin panel</li> <li>Activate the plugin through the 'Plugins' menu in WordPress</li> <li>That's it.</li> </ul>",
+		"changelog": "<h4>1.0.0</h4> <ul> <li>Basic version</li> </ul>",
+		"custom_section": "This is a custom section labeled 'Custom Section'."
+	},
+	
+	"icons" : {
+		"1x" : "https://orfeostory.biz/plugins/images/orfeostory-elementor-widgets-icon-128x128.jpg",
+		"2x" : "https://orfeostory.biz/plugins/images/orfeostory-elementor-widgets-icon-256x256.jpg"
+    },
+
+	"banners": {
+		"low": "https://orfeostory.biz/plugins/images/orfeostory-elementor-widgets-772x250.jpg",
+		"high": "https://orfeostory.biz/plugins/images/orfeostory-elementor-widgets-1544x500.jpg"
+	},
+
+	"translations": [
+		{
+			"language": "fr_FR",
+			"version": "4.0",
+			"updated": "2016-04-22 23:22:42",
+			"package": "http://example.com/updates/translations/french-language-pack.zip"
+		},
+		{
+			"language": "de_DE",
+			"version": "5.0",
+			"updated": "2016-04-22 23:22:42",
+			"package": "http://example.com/updates/translations/german-language-pack.zip"
+		}
+	],
+
+	"rating": 90,
+	"num_ratings": 123,
+
+	"downloaded": 1234,
+	"active_installs": 12345
+}
