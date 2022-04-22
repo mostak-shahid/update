@@ -29,6 +29,7 @@ $('.add_more_fleet').on('click', function(){
     $('#add_more_fleet_count').val(id);
 });
 /*Add more*/
+console.count()
 console.table()
 console.time("anylevel")
 for(let i =0; i < 1000000; i++) {
