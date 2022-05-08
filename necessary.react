@@ -1,0 +1,95 @@
+•	ES6 Arrow Functions
+•	ES6 Import & Export
+•	Class
+•	Spread or Rest Operator
+•	Destructuring
+•	Array Methods
+o	Main Array as it is
+	filter
+	find
+	findIndex
+	slice
+	concat 
+	map
+o	Change the main array
+	splice
+	push
+npx create-react-app ice-cream
+npm start
+
+Component Life cycle methods
+React Hooks
+React Context
+https://reactjs.org/
+https://react-bootstrap.github.io/
+Modules
+Dom for multi Pages
+npm install react-router-dom –save
+uses(App.js):
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; 
+<div className="Mos-app">
+  <Router>
+	<Header/>
+	<Routes>          
+	<Route exact path="/" element={<Home/>} />
+	<Route path="/about" element={<About/>}/>
+	<Route path="/contact" element={<Contact/>}/>
+	<Route path="*" element={<NotFound/>}/>
+	</Routes>
+	<Footer/>
+  </Router>
+</div>
+import { NavLink } from 'react-router-dom'
+<ul>
+<li><NavLink to="/" exact activeClassName="active">Home</NavLink></li>
+<li><NavLink to="/about" activeClassName="active">About</NavLink></li>
+<li><NavLink to="/contact" activeClassName="active">Contact</NavLink></li>
+</ul>
+
+React Helmet
+npm install --save react-helmet
+import { Helmet } from "react-helmet";
+<Helmet>
+<title>{TITLE}</title>
+<link rel="canonical" href={CANONICAL} />
+<meta name="description" content={DESC} />
+<meta name="theme-color" content={Config.THEME_COLOR} />
+</Helmet>
+
+npm install axios
+React Transition group
+npm install react-transition-group –save
+React Icons
+npm install react-icons –save
+
+https://react-icons.github.io/react-icons/
+
+Best Practices
+Click Functionality
+import {useState} from ‘react’
+const [color, setColor] = useState(“black”)
+<button onClick={() => {setColor(color == ‘black’?’red’:’black’)}}>Change Color</button>
+<h1 style={{ color: color}}>Sample Text</h1>
+----------------------------------------------------------------------------------------------------------------------------
+<button onClick={() => {setInactive(!inactive)}}>Change Color</button>
+<div className={`side-menu ${inactive ? “inactive”: “”}`}></div>
+------------------------------------------------------------------------------
+{
+menuItems.map((menuItem,index) => (
+    <MenuItem
+        key={index}
+        name={menuItem.name}
+        to={menuItem.to}
+        subMenus={menuItems.subMenues || []}
+    />
+))
+}
+Form Inputs
+import {useState} from ‘react’
+const [name, setName] = useState(‘’) 
+const [age, setAge] = useState(0)
+const [email, setEmail] = useState(‘’)
+<input onChange={(e)=>{setName(e.target.value)}} />
+const [user, setUser] = useState({name: ‘’, age: 0, email: ‘’});
+<input onChange={(e)=>{setUser({…user, name: e.target.value})}} />
+
