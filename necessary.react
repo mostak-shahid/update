@@ -93,3 +93,16 @@ const [email, setEmail] = useState(‘’)
 const [user, setUser] = useState({name: ‘’, age: 0, email: ‘’});
 <input onChange={(e)=>{setUser({…user, name: e.target.value})}} />
 
+
+
+Push to live
+change the "homepage": "http://mdshahalam.design/getwebapi/react/", on package.json
+change in app.js if you like to run in a subfolder <Router basename="/getweb-react">
+create a .htaccess file with below code
+/***************************************/
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [QSA,L]
+/***************************************/
+npm run build
