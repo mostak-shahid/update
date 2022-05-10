@@ -84,14 +84,27 @@ menuItems.map((menuItem,index) => (
     />
 ))
 }
+if logic
+{submitting &&
+    <div>Submtting Form...</div>
+}
+if else logic
+{submitting?
+    <div>Submtting Form...</div>:
+	<div>Show Form...</div>
+}
+
 Form Inputs
 import {useState} from ‘react’
 const [name, setName] = useState(‘’) 
 const [age, setAge] = useState(0)
 const [email, setEmail] = useState(‘’)
 <input onChange={(e)=>{setName(e.target.value)}} />
+
 const [user, setUser] = useState({name: ‘’, age: 0, email: ‘’});
 <input onChange={(e)=>{setUser({…user, name: e.target.value})}} />
+
+console.log(pageData?.meta?._mosacademy_page_group_details_group);
 
 
 
