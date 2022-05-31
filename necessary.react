@@ -135,7 +135,7 @@ console.log(pageData?.meta?._mosacademy_page_group_details_group);
 Push to live
 change the "homepage": "http://mdshahalam.design/getwebapi/react/", on package.json
 change in app.js if you like to run in a subfolder <Router basename="/getweb-react">
-create a .htaccess file with below code
+create a .htaccess file with below code and put it inside build folder
 /***************************************/
 Options -MultiViews
 RewriteEngine On
