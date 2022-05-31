@@ -1,0 +1,167 @@
+Use Variable
+$name: value
+
+selector {
+    property: $name        
+}
+---------------------------------------------------------------
+Use MAP
+$font-weights: (
+    "regular": 400,
+    "medium": 500,
+    "bold": 700
+)
+
+selector {
+    font-weight: map-get($font-weights, regular)
+}
+---------------------------------------------------------------
+Import
+create a file with a _ underscroll at the top
+then use import with out underscroll and extansion
+    @import "./header"
+---------------------------------------------------------------
+Mixin
+@mixin name{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+selector {
+    @include name()    
+}
+    
+@mixin name($direction, $background){
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-direction: $direction;
+    background: $background
+}
+selector {
+    @include name(column, red)    
+}
+
+@mixin mobile{
+    @media(min-width: $mobile){
+        @content    
+    }    
+}
+selector {
+    @include mobile{
+        flex-direction: row
+    }    
+}
+---------------------------------------------------------------
+Function
+@function weight($weight-name){
+    @return map-get($font-weights, regular)
+}
+selector{
+    font-weight: weight(bold)
+}
+---------------------------------------------------------------
+IF ELSE
+@mixin theme($light-theme: true){
+    @if $light-theme{
+        background-color: lighten($theme-color, 100%);
+        color: darken($text-color, 100%)
+    }
+}
+.light {
+    @include theme($light-theme: true)    
+}
+
+@function set-text-color($color){
+    @if (lightness($color)> 40%){
+        return #000000;
+    }@else {        
+        return #ffffff
+    }
+}
+.a {
+    color: set-text-color: set-text-color($theme-color) 
+}
+---------------------------------------------------------------
+For Loop
+@for $i from 1 through 4 {
+    .menu-nav__item:nth-child(#{i}){
+        transition-delay: ($i * 0.1s) + 0.15s;
+    }
+}
+---------------------------------------------------------------
+Extend
+selector{
+    @extent header;
+    background-color: red
+}
+
+.main{
+    background-color: red;
+    #{&}_sub_1{
+        color: black;
+        font-weight: 400;
+    }    
+    #{&}_sub_2{
+        @extent .main_sub_1;
+        font-weight: 700;
+    }  
+}
+---------------------------------------------------------------
+Operator - + / *
+selector {
+    width: 100% - 40px
+}
+---------------------------------------------------------------
+Nesting
+
+input:
+.main{
+    background-color: red;
+    .sub{
+        font-weight: 400;
+    }    
+}
+output:
+.main{background-color: red;}
+.main .sub{background-color: font-weight: 400;}
+
+ 
+input:
+.main{
+    background-color: red;
+    &.sub{
+        font-weight: 400;
+    }    
+}
+output:
+.main{background-color: red;}
+.main.sub{background-color: font-weight: 400;}
+
+
+input:
+.main{
+    background-color: red;
+    &_sub{
+        font-weight: 400;
+    }    
+}
+output:
+.main{background-color: red;}
+.main_sub{background-color: font-weight: 400;}
+
+
+input:
+.main{
+    background-color: red;
+    #{&}_sub{
+        font-weight: 400;
+    }    
+}
+output:
+.main{background-color: red;}
+.main .main_sub{background-color: font-weight: 400;}

@@ -1,4 +1,4 @@
-/*gradient test css*/
+/*Gradient test css*/
 selector {
     background: linear-gradient(180deg, #ff8a00, #da1b60); 
     -webkit-background-clip: text;
@@ -12,6 +12,20 @@ selector {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
+}
+/*Use svg*/
+selector {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><linearGradient id='gradient'><stop offset='10%' stop-color='%23F00'/><stop offset='90%' stop-color='%23fcc'/> </linearGradient><rect fill='url(%23gradient)' x='0' y='0' width='100%' height='100%'/></svg>");
+}
+selector {
+    
+  background: 
+    linear-gradient(
+      to right,
+      rgba($primary-color, 0.9),
+      rgba($primary-color, 0.3)
+    ),
+    url('../img/model-1.jpg') center top;
 }
 :root {
   --first-color: #16f;
