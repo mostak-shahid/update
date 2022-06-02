@@ -94,6 +94,30 @@ if else logic
 	<div>Show Form...</div>
 }
 
+/*Working with state*/
+  increment() {
+    this.setState((prevState) => ({
+      count: prevState.count + 1
+    }))
+    // this.setState({
+    //   count: this.state.count + 1
+    // }, () => {
+    //   console.log('Callback', this.state.count)
+    // })
+    // this.state.count = this.state.count + 1
+    // console.log(this.state.count)
+  }
+
+  incrementFive() {
+    console.log('Inside incrementFive')
+    this.increment()
+    this.increment()
+    this.increment()
+    this.increment()
+    this.increment()
+  }
+/*Working with state*/
+
 Form Inputs
 import {useState} from ‘react’
 const [name, setName] = useState(‘’) 
