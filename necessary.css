@@ -93,3 +93,28 @@ selector::before {
     border-radius: inherit;
     background: linear-gradient(73.69deg, #FF28A7 8.86%, #3221AB 88.27%);
 }
+
+/*Support CSS*/
+@supports (display: grid) {
+    div {
+        display: grid;
+    }
+}
+@supports not (display: grid) {
+    div {
+        display: table;
+        width: 100%;
+    }
+}
+/*Where Css*/
+.parent #children1,
+.parent .children2,
+.parent p {    
+    background-color: blue
+}
+/*Replace it with below*/
+.parent:where(#children1, .children2, p ) {
+    background-color: blue
+}
+/*Alpha value in HEX Color*/
+#00000050
