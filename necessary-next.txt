@@ -1,0 +1,102 @@
+Create a next app
+npx create-next-app app-name
+----------------------------------------------------------
+CSS style and class maintain
+Type: 1
+import the css
+import styles from "../styles/Layout.module.css";
+<div className={styles.container}></div>
+
+Type: 2
+Use class name directly
+<div className="container"></div>
+
+Type: 3
+Inline CSS
+<div className="container"></div>
+<style jsx>
+{`
+.container {
+	width: 1450px;
+}
+`}
+</style>
+---------------------------------------------------------
+Custom Document
+https://nextjs.org/docs/advanced-features/custom-document
+
+A custom Document can update the <html> and <body> tags used to render a Page. This file is only rendered on the server, so event handlers like onClick cannot be used in _document.
+
+To override the default Document, create the file pages/_document.js:
+
+-------------------------------------------------------------------------------------
+LInk
+import Link from "next/link";
+<Link href="/">Home</Link>
+<Link href="/about">About</Link>
+<Link className={articleStyles.card} href='/article/[id]' as={`/article/${article.id}`}>Single Blog</Link>
+-------------------------------------------------------------------------------------
+useRouter
+import { useRouter } from 'next/router'
+const article = ({ article }) => {
+	const router = useRouter()
+	const { id } = router.query
+}
+-------------------------------------------------------------------------------------
+Data faching 
+Type 1: 
+export const getStaticProps = async () => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts?_limit=6`
+  );
+  const articles = await res.json();
+
+  return {
+    props: {
+      articles,
+    },
+  };
+};
+
+Type 2: 
+export const getServerSideProps = async (context) => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+  )
+
+  const article = await res.json()
+
+  return {
+    props: {
+      article,
+    },
+  }
+}
+Type 3: 
+export const getStaticProps = async (context) => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+  )
+
+  const article = await res.json()
+
+  return {
+    props: {
+      article,
+    },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+
+  const articles = await res.json()
+
+  const ids = articles.map((article) => article.id)
+  const paths = ids.map((id) => ({ params: { id: id.toString() } }))
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
