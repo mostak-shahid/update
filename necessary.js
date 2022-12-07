@@ -15,6 +15,13 @@ jQuery(document).ready(function($){
         });
     });
 });
+/*Add Template to html*/
+$(function(){
+    $(".header").load("/Partials/nav");
+    $("#myNav").load("/Partials/mobile-nav");
+    $("footer").load("/Partials/footer");
+});
+/*Add Template to html*/
 /*Add more*/
 
 $('.add_more_fleet').on('click', function(){
