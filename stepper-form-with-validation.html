@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stepper form with validation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <style>
+        .stepper-form .steps ul {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            counter-reset: item;
+        }
+
+        .stepper-form .steps ul li {
+            overflow: hidden;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #E4F5E1;
+            border: 1px solid #67AD5B;
+            position: relative;
+        }
+
+        .stepper-form .steps ul li::before {
+            /*    content:counter(item, decimal-leading-zero) " ";*/
+            content: counter(item);
+            counter-increment: item;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .stepper-form .steps ul li a {
+            display: block;
+            opacity: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stepper-form .steps ul li.done,
+        .stepper-form .steps ul li.current {
+            background-color: #67AD5B;
+        }
+        .stepper-form .actions ul {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            gap: 12px;
+        }
+        .stepper-form .actions ul li a {
+            display: block;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <form class="stepper-form" id="example-advanced-form" action="" method="post">
+            <h3 class="step-title d-none">Account</h3>
+            <fieldset>
+                <h4 class="text-center">Lets start with your email address and name</h4>
+                <div class="form-group mb-3">
+                    <input id="full_name" name="full_name" type="text" class="mos-form-validate form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group mb-3">
+                    <input id="user_email" name="user_email" type="text" class="mos-form-validate form-control" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group mb-3">
+                    <input id="password" name="password" type="password" class="mos-form-validate form-control" placeholder="Type your password" required>
+                </div>
+                <div class="form-group mb-3">
+                    <input id="confirm" name="confirm" type="password" class="mos-form-validate form-control" placeholder="Re-type your password" required>
+                </div>
+                <div class="form-group tml-field-wrap tml-rememberme-wrap">
+                    <input name="marketing-email" type="checkbox" value="forever" id="marketing-email" class="tml-checkbox">
+                    <label class="tml-label" for="marketing-email">I would like to recieve occasional marketing emails from selfmade and its partners</label>
+                </div>
+            </fieldset>
+
+            <h3 class="step-title d-none">Profile</h3>
+            <fieldset>
+                <legend>Profile Information</legend>
+
+                <label for="name-2">First name *</label>
+                <input id="name-2" name="name" type="text" class="required">
+                <label for="surname-2">Last name *</label>
+                <input id="surname-2" name="surname" type="text" class="required">
+                <label for="email-2">Email *</label>
+                <input id="email-2" name="email" type="text" class="required email">
+                <label for="address-2">Address</label>
+                <input id="address-2" name="address" type="text">
+                <label for="age-2">Age (The warning step will show up if age is less than 18) *</label>
+                <input id="age-2" name="age" type="text" class="required number">
+                <p>(*) Mandatory</p>
+            </fieldset>
+
+            <h3 class="step-title d-none">Warning</h3>
+            <fieldset>
+                <legend>You are to young</legend>
+
+                <p>Please go away ;-)</p>
+            </fieldset>
+
+            <h3 class="step-title d-none">Finish</h3>
+            <fieldset>
+                <legend>Terms and Conditions</legend>
+
+                <input id="acceptTerms-2" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+            </fieldset>
+        </form>
+    </div>
+    <script>
+        jQuery(document).ready(function($) {
+            $.validator.addMethod(
+                "regex",
+                function(value, element, regexp) {
+                    var re = new RegExp(regexp);
+                    return this.optional(element) || re.test(value);
+                },
+                "Please check your input."
+            );
+            var form = $("#example-advanced-form");
+            form.steps({
+                    headerTag: ".step-title",
+                    bodyTag: "fieldset",
+                    transitionEffect: "slideLeft",
+                    onStepChanging: function(event, currentIndex, newIndex) {
+                        // Allways allow previous action even if the current form is not valid!
+                        //                    if (currentIndex > newIndex) {
+                        //                        return true;
+                        //                    }
+
+                        // Forbid next action on "Warning" step if the user is to young
+                        //                    if (newIndex === 3 && Number($("#age-2").val()) < 18) {
+                        //                        return false;
+                        //                    }
+
+                        // Needed in some cases if the user went back (clean up)
+                        //                    if (currentIndex < newIndex) {
+                        //                        // To remove error styles
+                        //                        form.find(".body:eq(" + newIndex + ") label.error").remove();
+                        //                        form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+                        //                    }
+
+                        //                    form.validate().settings.ignore = ":disabled,:hidden";
+                        return form.valid();
+                    },
+                    /*onStepChanged: function(event, currentIndex, priorIndex) {
+                        // Used to skip the "Warning" step if the user is old enough.
+                        if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
+                            form.steps("next");
+                        }
+
+                        // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+                        if (currentIndex === 2 && priorIndex === 3) {
+                            form.steps("previous");
+                        }
+                    },*/
+                    onFinishing: function(event, currentIndex) {
+                        form.validate().settings.ignore = ":disabled";
+                        return form.valid();
+                    },
+                    onFinished: function(event, currentIndex) {
+                        alert("Submitted!");
+                    }
+                })
+                .validate({
+                    errorPlacement: function errorPlacement(error, element) {
+                        element.before(error);
+                    },
+                    rules: {
+                        full_name: {
+                            required: true,
+                            regex: "^[a-zA-Z'.]{1,40}$"
+                        },
+                        confirm: {
+                            equalTo: "#password"
+                        }
+                    },
+                    messages: {
+                        full_name: {
+                            required: 'Full name is required',
+                            regex: 'Only alphabets are allowed'
+                        }                        
+                    },
+                    errorElement: "div",
+                    errorPlacement: function(error, element) {
+                        // Add the `help-block` class to the error element
+                        error.addClass("invalid-feedback");
+
+                        if (element.prop("type") === "checkbox") {
+                            error.insertAfter(element.parent("label"));
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+                    highlight: function(element, errorClass, validClass) {
+                        $(element).parents(".form-group").find('.mos-form-validate').addClass("is-invalid").removeClass("is-valid");
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).parents(".form-group").find('.mos-form-validate').addClass("is-valid").removeClass("is-invalid");
+                    }
+                });
+        });
+
+    </script>
+</body>
+
+</html>
