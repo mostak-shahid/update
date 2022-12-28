@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Slider with Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.cloud9carousel.js"></script>
+    <script type="text/javascript" src="reflection-jquery/js/reflection.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        #slider-wrap,
+        #showcase {            
+            height: 730px;
+        }
+        #slider-wrap {
+            position: relative;
+        }
+
+        #showcase {
+            width: 100%;
+            float: left;
+        }
+        #showcase::after {
+            content: '';
+            display: table;
+            width: 100%;
+            clear: both;
+        }
+        #showcase a {
+            display: block;
+            max-width: 20%;
+        }
+/*
+        img {
+            width: 80px;
+        }
+*/
+
+        .search-wrap {
+            position: absolute;
+            background: #FFFFFF;
+            box-shadow: 30px 30px 60px rgb(26 34 39 / 10%);
+            top: 200px;
+            left: 0;
+            right: 0;
+            max-width: 836px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 15px 17px;
+            z-index: 999;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+
+        .search-wrap .search-text {
+            background-image: url(images/search.svg);
+            background-position: left center;
+            background-repeat: no-repeat;
+            border-style: none;
+            background-color: transparent;
+            outline: none;
+            padding-left: 30px;
+            height: 49px;
+        }
+
+        .search-wrap .search-btn {
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            padding: 17px 36px;
+            background: #47D0BC;
+            border-style: none;
+        }
+        .btn-group {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flex;
+            display: -o-flex;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+            position: absolute;
+            z-index: 999;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        .btn-group button {
+            width: 50px;
+            height: 50px;
+            text-indent: -9999px;
+            overflow: hidden;
+            display: block;
+            border-style: none;
+            clear: both;
+            background-color: transparent;
+        }
+        .btn-group button.prev {
+            background-image: url(images/arrow-left.png);
+        }
+        .btn-group button.prev:hover {
+            background-image: url(images/arrow-left-hover.png);
+        }
+        .btn-group button.next {
+            background-image: url(images/arrow-right.png);
+        }
+        .btn-group button.next:hover {
+            background-image: url(images/arrow-right-hover.png);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slider-wrap">
+        <div id="showcase" class="noselect">
+            <a href="https://www.firefox.com" data-search="Firefox">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Firefox" alt="Firefox" title="Firefox description firefox description firefox description firefox description firefox ">
+            </a>
+            <a href="https://www.wyzo.com" data-search="Wyzo" class="match">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Wyzo" alt="Wyzo" title="Wyzo description Wyzodescription Wyzodescription Wyzodescription Wyzo">
+            </a>
+            <a href="https://www.opera.com" data-search="Opera">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Opera" alt="Opera" title="Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description ">
+            </a>
+            <a href="https://www.google.com" data-search="Chrome Browser">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Chrome" alt="Chrome" title="Chrome description Chrome description Chrome description Chrome description ">
+            </a>
+            <a href="https://www.microsoft.com" data-search="Internet Explorer Browser">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Internet+Explorer" alt="Internet Explorer" title="IE description">
+            </a>
+            
+            <a href="https://www.apple.com" data-search="Apple">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Apple" alt="Apple" title="Apple description Apple description Apple description Apple description Apple ">
+            </a>
+            <a href="https://www.Amazon.com" data-search="Amazon" class="match">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Amazon" alt="Amazon" title="Amazon description Amazondescription Amazondescription Amazondescription Amazon">
+            </a>
+            <a href="https://www.Alphabet.com" data-search="Alphabet">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Alphabet" alt="Alphabet" title="Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description Alphabet description ">
+            </a>
+            <a href="https://www.facebook.com" data-search="Facebook">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Facebook" alt="Facebook" title="Chrome description Chrome description Chrome description Chrome description ">
+            </a>
+            <a href="https://www.Tencent.com" data-search="Tencent">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Tencent" alt="Internet Explorer" title="IE description">
+            </a>
+            <a href="https://www.Tesla.com" data-search="Tesla">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Tesla" alt="Tesla" title="Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description Opera description ">
+            </a>
+            <a href="https://www.Alibaba.com" data-search="Alibaba">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Alibaba" alt="Chrome" title="Chrome description Chrome description Chrome description Chrome description ">
+            </a>
+            <a href="https://www.Visa.com" data-search="Visa">
+                <img class="cloud9-item" src="https://via.placeholder.com/270x320.png?text=Visa" alt="Internet Explorer" title="IE description">
+            </a>
+        </div>
+        <nav class="btn-group">
+            <button type="button" class="prev">Prev</button>
+            <button type="button" class="next">Next</button>
+        </nav>
+        <div class="search-wrap">
+            <!--        <input type="number" class="test">-->
+            <input type="text" class="search-text" placeholder="Choose a Coverage..">
+            <button type="button" class="search-btn">Search</button>
+        </div>
+    </div>
+    <script>
+        jQuery(document).ready(function($) {
+
+            var nodes = Array.prototype.slice.call(document.getElementById('showcase').children);
+            var showcase = $("#showcase");
+            
+            
+            
+            var carousel = showcase.Cloud9Carousel({
+                yOrigin: 42,
+                //yRadius: 48,
+                yRadius: 300,
+//                yRadius: 100,
+                //                farScale: 1,
+                buttonLeft: $(".next"),
+                buttonRight: $(".prev"),
+                autoPlay: 1,
+                bringToFront: true,
+//                mirror: {
+//                    gap: 12,     /* 12 pixel gap between item and reflection */
+//                    height: 0.2, /* 20% of item height */
+//                    opacity: 0.4 /* 40% opacity at the top */
+//                },
+                //                onRendered: rendered,
+                onLoaded: function() {
+                    showcase.css('visibility', 'visible')
+                    showcase.css('display', 'none')
+                    showcase.fadeIn(1500)
+                }
+            });
+
+            function rendered(carousel) {
+                //                var c = Math.cos((carousel.floatIndex() % 1) * 2 * Math.PI)
+            }
+
+            $('.test').change(function(carousel) {
+                //console.log()
+                $("#showcase").data("carousel").goTo($(this).val());
+            });
+
+            $('.search-text').keydown(function() {
+                var searchValue = $(this).val().toLowerCase();
+                showcase.find('a').each(function(e) {
+                    console.log(searchValue);
+                    var searchData = $(this).data('search').toLowerCase();
+                    if (searchData.match(searchValue)) {
+                        //console.log(nodes.indexOf($(this)[0]));
+                        $("#showcase").data("carousel").goTo(nodes.indexOf($(this)[0]));
+                    }
+
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>
