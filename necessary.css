@@ -68,6 +68,15 @@ filter: blur(8px);
 .resixed part{
     flex: 1;   
 }
+.ellipsis-text {
+    height: auto !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 /*Gradient Border with Radius*/
 selector {
    /* display: flex;
