@@ -115,6 +115,10 @@ selector::before {
         width: 100%;
     }
 }
+/*Disable button click*/
+a[aria-current="page"] {
+  pointer-events: none;
+}
 /*Where Css*/
 .parent #children1,
 .parent .children2,
