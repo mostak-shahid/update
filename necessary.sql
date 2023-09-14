@@ -63,3 +63,16 @@ DB::table('customers')
                                 
 DB::table('users')->select('users.name',DB::raw('case profiles.key when "address_line_1" then profiles.value end as C
 ustomText'))->join('profiles','users.id','=','profiles.user_id')->get();
+
+
+#Delete all products
+DELETE relations.*, taxes.*, terms.*
+FROM wpyq_term_relationships AS relations
+INNER JOIN wpyq_term_taxonomy AS taxes
+ON relations.term_taxonomy_id=taxes.term_taxonomy_id
+INNER JOIN wpyq_terms AS terms
+ON taxes.term_id=terms.term_id
+WHERE object_id IN (SELECT ID FROM wpyq_posts WHERE post_type IN ('product','product_variation'));
+
+DELETE FROM wpyq_postmeta WHERE post_id IN (SELECT ID FROM wpyq_posts WHERE post_type IN ('product','product_variation'));
+DELETE FROM wpyq_posts WHERE post_type IN ('product','product_variation');
