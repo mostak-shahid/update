@@ -1,6 +1,6 @@
 {
 	"name": "Mos Single Page Checkout",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"download_url": "https://github.com/mostak-shahid/mos-sp-checkout/archive/refs/heads/main.zip",
 
 	"homepage": "https://github.com/mostak-shahid/mos-sp-checkout",
@@ -25,8 +25,8 @@
     },
 
 	"banners": {
-		"low": "http://w-shadow.com/files/external-update-example/assets/banner-772x250.png",
-		"high": "http://w-shadow.com/files/external-update-example/assets/banner-1544x500.png"
+		"low": "https://github.com/mostak-shahid/mos-sp-checkout/blob/main/images/banner-772x250.png",
+		"high": "https://github.com/mostak-shahid/mos-sp-checkout/blob/main/images/banner-1544x500.png"
 	},
 
 	"translations": [
