@@ -20,13 +20,13 @@
 	},
 	
 	"icons" : {
-		"1x" : "http://w-shadow.com/files/external-update-example/assets/icon-128x128.png",
-		"2x" : "http://w-shadow.com/files/external-update-example/assets/icon-256x256.png"
+		"1x" : "https://alphacommerz.com.bd/images/icon-128x128.png",
+		"2x" : "https://alphacommerz.com.bd/images/icon-256x256.png"
     },
 
 	"banners": {
-		"low": "https://github.com/mostak-shahid/mos-sp-checkout/blob/main/images/banner-772x250.png",
-		"high": "https://github.com/mostak-shahid/mos-sp-checkout/blob/main/images/banner-1544x500.png"
+		"low": "https://alphacommerz.com.bd/images/banner-772x250.png",
+		"high": "https://alphacommerz.com.bd/images/banner-1544x500.png"
 	},
 
 	"translations": [
