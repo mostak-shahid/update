@@ -1,3 +1,9 @@
+SELECT wp_mos_skim_user.*, wp_users.display_name
+    FROM wp_mos_skim_user
+    LEFT JOIN wp_users
+    ON wp_mos_skim_user.user_id =  wp_users.ID
+    WHERE status LIKE "pending"
+
 #MySQL Vertical Horizontal Join
 SELECT u.id, u.name, u.username, group_concat(CASE p.key WHEN 'address_line_1' THEN p.value END) address_line_1, group_concat(CASE p.key WHEN 'address_line_2' THEN p.value END) address_line_2 FROM users u LEFT JOIN profiles p ON u.id = p.user_id GROUP BY u.id
 
