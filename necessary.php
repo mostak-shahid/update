@@ -4,7 +4,28 @@
 <?php $html = ob_get_clean();
 return $html; ?>
 
-
+<?php
+add_action( 'init',  function() {
+    add_rewrite_rule( 
+        'myparamname/([a-z0-9-]+)[/]?$', 
+        'index.php?myparamname=$matches[1]', 
+        'top' 
+    );
+});
+    
+add_filter( 'query_vars', function( $query_vars ) {
+    $query_vars[] = 'myparamname';
+    return $query_vars;
+});
+    
+add_filter( 'template_include', function( $template ) {
+    if ( get_query_var( 'myparamname' ) == false || get_query_var( 'myparamname' ) == '' ) {
+        return $template;
+    }
+    return get_template_directory() . '/template-name.php';
+}); 
+    
+?>
 
 <?php
 //Wordpress Redirect Page
@@ -31,10 +52,10 @@ function mos_redirect_post() {
 <?php wp_get_attachment_url( $attachment_id ); ?>
 <?php var_dump(wp_get_attachment_image_src( $attachment_id, 'full-width-image')) ?>
 
-		$attachment_size_url = wp_get_attachment_image_src( $attachment_id, 'full-width-image')[0];
-		$attachment_title = get_the_title($attachment_id);	
-		$attachment_description = get_post_field('post_content', $attachment_id);	
-		$attachment_caption = get_the_excerpt( $attachment_id );	
-		$attachment_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
+$attachment_size_url = wp_get_attachment_image_src( $attachment_id, 'full-width-image')[0];
+$attachment_title = get_the_title($attachment_id);
+$attachment_description = get_post_field('post_content', $attachment_id);
+$attachment_caption = get_the_excerpt( $attachment_id );
+$attachment_alt = get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 
 <!--Attatchment detgails-->
