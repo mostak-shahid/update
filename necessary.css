@@ -37,6 +37,25 @@ selector {
   color: var(--second-color);
 }
 /*CSS Numbering*/
+section {
+    counter-reset:item;
+}
+section .child:after{
+    content:counter(item, decimal-leading-zero) " ";
+    counter-increment:item;
+    font-size:60px;
+    line-height:60px;
+    position:absolute;
+    font-weight:700;
+    font-family:'Barlow Condensed', sans-serif;
+    bottom:30px;
+    right:30px;
+    letter-spacing:1px;
+    z-index:99;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(225, 225, 225, 0.50);
+}
+----------------------------------------------------------
 h3 {
   counter-increment: h3;
   display: list-item;
