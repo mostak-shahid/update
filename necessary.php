@@ -5,6 +5,7 @@
 return $html; ?>
 
 <?php
+// Create custom page
 add_action( 'init',  function() {
     add_rewrite_rule( 
         'myparamname/([a-z0-9-]+)[/]?$', 
@@ -26,11 +27,51 @@ add_filter( 'template_include', function( $template ) {
 }); 
     
 ?>
-
 <?php
-//Wordpress Redirect Page
+//Create child page 
+add_action('init', function () {
+    add_rewrite_endpoint('account', EP_PERMALINK | EP_PAGES);
+    add_rewrite_endpoint('subscriptions', EP_PERMALINK | EP_PAGES);
+});
+add_filter('query_vars', function ($vars) {
+    $vars[] = 'account';
+    $vars[] = 'subscriptions';
+    return $vars;
+});
+add_shortcode('account-page', 'account_page_func');
+function account_page_func() {
+    global $wp;
+    $html = '';
+
+    if(isset($wp->query_vars['account'])) {
+        $html .= user_account_content();
+    }elseif(isset($wp->query_vars['subscriptions'])) {
+        $html .= user_subscriptions_content();
+    } else {
+        $html .= user_dashboard_content();
+    } 
+    return $html;
+}  
+add_action( 'template_redirect', 'mos_404_redirect' );
+function mos_404_redirect() {
+    global $wp_query;
+
+    if ( 
+        (array_key_exists("account",$wp_query->query) || array_key_exists("subscriptions",$wp_query->query)) && 
+        !$wp_query->is_page( 'dashboard' )){
+        $wp_query->set_404();
+//        status_header(404);
+    }
+    if ($wp_query->is_page( 'dashboard' ) && !is_user_logged_in()) {
+        $wp_query->set_404();
+    }
+}
+?>    
+<?php
+//Wordpress Redirect 404 Page
 
 add_action( 'template_redirect', 'mos_redirect_post' );
+add_action( 'wp', 'mos_redirect_post' );
 
 function mos_redirect_post() {
     if ( is_singular( 'query' ) ) {
@@ -46,7 +87,19 @@ function mos_redirect_post() {
 }
 
 ?>
-
+<?php
+//Redirect login.php
+add_action('init', 'custom_login');
+if ( ! function_exists( 'custom_login' ) ) {
+    function custom_login(){
+        global $pagenow;
+        if ('wp-login.php' == $pagenow) {
+             wp_redirect( esc_url( home_url('/sign-in/') ) );
+            // No need for the exit() statement here
+        }
+    }
+}
+?>
 <?php
     // Plugin Dependancy
     require_once(ABSPATH . 'wp-admin/includes/plugin.php');
