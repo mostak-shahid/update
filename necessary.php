@@ -57,8 +57,7 @@ function mos_404_redirect() {
     global $wp_query;
 
     if ( 
-        (array_key_exists("account",$wp_query->query) || array_key_exists("subscriptions",$wp_query->query)) && 
-        !$wp_query->is_page( 'dashboard' )){
+        (array_key_exists("account",$wp_query->query) || array_key_exists("subscriptions",$wp_query->query)) && !$wp_query->is_page( 'dashboard' )){
         $wp_query->set_404();
 //        status_header(404);
     }
