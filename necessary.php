@@ -100,6 +100,41 @@ if ( ! function_exists( 'custom_login' ) ) {
 }
 ?>
 <?php
+function custom_shop_page_redirect()
+{
+	// if (is_shop()) {
+	if (is_woocommerce() || is_checkout() || is_cart()) {
+		wp_redirect(home_url('/restricted/'));
+		exit();
+	}
+}
+// add_action('template_redirect', 'custom_shop_page_redirect');
+function portfolio_page_template($template)
+{
+	// if (isset($_SERVER['REQUEST_URI']) && basename(sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI']))) == 'restricted') {
+	// 	$template = ULTIMATE_SECURITY_FOR_WOOCOMMERCE_PATH . 'public/partials/' . 'ultimate-security-for-woocommerce-public-display.php';
+	// }
+	if (is_woocommerce() || is_checkout() || is_cart()) {
+		$template = ULTIMATE_SECURITY_FOR_WOOCOMMERCE_PATH . 'public/partials/' . 'ultimate-security-for-woocommerce-public-display.php';
+	}
+	return $template;
+}
+add_filter('template_include', 'portfolio_page_template', 99);
+// var_dump(esc_html($wp->request));
+
+
+/* Add a paragraph only to Pages. */
+function my_added_page_content($content)
+{
+	if (is_page()) {
+		return $content = '';
+	}
+
+	return $content;
+}
+// add_filter('the_content', 'my_added_page_content', 9999);
+?>
+<?php
     // Plugin Dependancy
     require_once(ABSPATH . 'wp-admin/includes/plugin.php');
     if (!is_plugin_active('woocommerce/woocommerce.php')) {
