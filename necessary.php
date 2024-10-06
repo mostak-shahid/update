@@ -205,6 +205,15 @@ function my_added_page_content($content)
 		}
     }
 ?>
+// Sanitizing
+<?php 
+wp_nonce_field('upgrade_store_form_action', 'upgrade_store_form_field');
+if (isset($_POST['upgrade_store_form_field']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['upgrade_store_form_field'])), 'upgrade_store_form_action')) {
+    // Code here
+}
+$atts = (isset($_POST['attributes']) && sizeof($_POST['attributes'])) ? array_map("sanitize_text_field",$_POST['attributes']):[];
+$atts = (isset($_POST['attributes']) && sizeof($_POST['attributes'])) ? map_deep(wp_unslash($_POST['attributes']), 'sanitize_text_field') : [];
+?>
 <!--Attatchment detgails-->
 <?php wp_get_attachment_metadata( $attachment_id, $unfiltered ); ?>
 <?php wp_get_attachment_image( int $attachment_id, string|array $size = 'thumbnail', bool $icon = false, string|array $attr = '' ) ?>
