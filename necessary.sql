@@ -1,15 +1,15 @@
 $wild = '%';
-		$result = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT {$wpdb->prefix}users.ID, {$wpdb->prefix}users.user_email, {$wpdb->prefix}users.user_login, group_concat(CASE {$wpdb->prefix}usermeta.meta_key WHEN '{$wpdb->prefix}capabilities' THEN {$wpdb->prefix}usermeta.meta_value END) {$wpdb->prefix}capabilities FROM {$wpdb->prefix}users LEFT JOIN {$wpdb->prefix}usermeta ON {$wpdb->prefix}users.ID = {$wpdb->prefix}usermeta.user_id WHERE ({$wpdb->prefix}users.ID LIKE %s OR {$wpdb->prefix}users.user_login LIKE %s OR {$wpdb->prefix}users.user_email LIKE %s) AND {$wpdb->prefix}usermeta.meta_value LIKE %s GROUP BY {$wpdb->prefix}users.ID LIMIT 0, 10;",
-				array(
-					$wild . $wpdb->esc_like($userQuery) . $wild,
-					$wild . $wpdb->esc_like($userQuery) . $wild,
-					$wild . $wpdb->esc_like($userQuery) . $wild,
-					$wild . $wpdb->esc_like('customer') . $wild
-				)
-			),
-		);
+$result = $wpdb->get_results(
+    $wpdb->prepare(
+        "SELECT {$wpdb->prefix}users.ID, {$wpdb->prefix}users.user_email, {$wpdb->prefix}users.user_login, group_concat(CASE {$wpdb->prefix}usermeta.meta_key WHEN '{$wpdb->prefix}capabilities' THEN {$wpdb->prefix}usermeta.meta_value END) {$wpdb->prefix}capabilities FROM {$wpdb->prefix}users LEFT JOIN {$wpdb->prefix}usermeta ON {$wpdb->prefix}users.ID = {$wpdb->prefix}usermeta.user_id WHERE ({$wpdb->prefix}users.ID LIKE %s OR {$wpdb->prefix}users.user_login LIKE %s OR {$wpdb->prefix}users.user_email LIKE %s) AND {$wpdb->prefix}usermeta.meta_value LIKE %s GROUP BY {$wpdb->prefix}users.ID LIMIT 0, 10;",
+        array(
+            $wild . $wpdb->esc_like($userQuery) . $wild,
+            $wild . $wpdb->esc_like($userQuery) . $wild,
+            $wild . $wpdb->esc_like($userQuery) . $wild,
+            $wild . $wpdb->esc_like('customer') . $wild
+        )
+    ),
+);
 
 SELECT wp_mos_skim_user.*, wp_users.display_name
     FROM wp_mos_skim_user
