@@ -3,7 +3,31 @@
 <html>
 <?php $html = ob_get_clean();
 return $html; ?>
+<?php
+// Use SVG
+// sanitize_hex_color(), sanitize_hex_color_no_hash()
+$primary_color_clean = str_replace('#', '', $primary_color);
+$secondary_color_clean = str_replace('#', '', $secondary_color);
+$svg = sprintf(
+    'data:image/svg+xml,%s',
+    rawurlencode(
+        '<svg width="120" height="60" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">' .
+        '<path d="M29.309 0H107.139L90.239 60H12.8535L29.309 0Z" fill="#' . $primary_color_clean . '"/>' .
+        '<path d="M0 13H120L111.429 30.1429L120 47.2857H0L8.57143 30.1429L0 13Z" fill="#' . $secondary_color_clean . '"/>' .
+        '</svg>'
+    )
+);
+// Inline CSS
+$upbfw_inline_css = "
+.ultimate-product-badge-wrapper.badge-5 .ultimate-product-badge {
+    width: 120px;
+    height: 60px;
+    background-image: url('{$badge_5_svg}');
+}";
 
+// Add inline styles
+wp_add_inline_style($this->plugin_name . '-public', $upbfw_inline_css);
+?>
 <?php
 // Create custom page
 add_action( 'init',  function() {
