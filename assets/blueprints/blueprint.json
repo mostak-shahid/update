@@ -1,69 +1,71 @@
 {
-	"$schema": "https://playground.wordpress.net/blueprint-schema.json"
-	, "landingPage": "/wp-admin/admin.php?page=ultimate-security#/login/temporary-login/create"
-	, "preferredVersions": {
-		"php": "8.2"
-		, "wp": "latest"
-	}
-	, "features": {
-		"networking": true
-	}
-	, "phpExtensionBundles": ["kitchen-sink"]
-	, "meta": {
-		"title": "Ultimate Security Plugin Blueprint"
-		, "description": "Security Plugin by Programmelab"
-		, "author": "Programmelab"
-		, "categories": [
-            "security"
-            , "Plugin"
-        ]
-	}
-	, "steps": [
-		{
-			"step": "login"
-    }
-		, {
-			"step": "installTheme"
-			, "themeZipFile": {
-				"resource": "wordpress.org/themes"
-				, "slug": "astra"
-			}
-			, "options": {
-				"activate": true
-			}
-    }
-		, {
-			"step": "installPlugin"
-			, "pluginZipFile": {
-				"resource": "wordpress.org/plugins"
-				, "slug": "ultimate-security"
-			}
-			, "options": {
-				"activate": true
-			}
-    }
-		, {
-			"step": "installPlugin"
-			, "pluginZipFile": {
-				"resource": "wordpress.org/plugins"
-				, "slug": "upgrade-store"
-			}
-			, "options": {
-				"activate": true
-			}
-    }
-		, {
-			"step": "setSiteOptions"
-			, "options": {
-				"blogname": "Ultimate Security Demo"
-				, "wpnakama_subscriber": {
-					"status": "subscribed"
-				}
-			}
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/wp-admin/admin.php?page=ultimate-security#/login/temporary-login/create",
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "meta": {
+    "title": "Ultimate Security Plugin Blueprint",
+    "description": "Security Plugin by Programmelab",
+    "author": "Programmelab",
+    "categories": [
+      "security",
+      "Plugin"
+    ]
+  },
+  "steps": [
+    {
+      "step": "login"
+    },
+    {
+      "step": "installTheme",
+      "themeZipFile": {
+        "resource": "wordpress.org/themes",
+        "slug": "astra"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "ultimate-security"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "upgrade-store"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Ultimate Security Demo",
+        "wpnakama_subscriber": {
+          "status": "subscribed"
         }
-		, {
-			"step": "runPHP"
-			, "code": "<?php require_once 'wordpress/wp-load.php'; wp_update_post( [ 'ID' => 1, 'post_status' => 'publish' ] ); ?>"
-        }
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once 'wordpress/wp-load.php'; wp_update_post( [ 'ID' => 1, 'post_status' => 'publish' ] ); ?>"
+    }
   ]
 }
