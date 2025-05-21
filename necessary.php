@@ -238,6 +238,24 @@ if (isset($_POST['upgrade_store_form_field']) && wp_verify_nonce(sanitize_text_f
 $atts = (isset($_POST['attributes']) && sizeof($_POST['attributes'])) ? array_map("sanitize_text_field",$_POST['attributes']):[];
 $atts = (isset($_POST['attributes']) && sizeof($_POST['attributes'])) ? map_deep(wp_unslash($_POST['attributes']), 'sanitize_text_field') : [];
 ?>
+<?php
+define('API_KEY_ENCRYPTION_KEY', '$cT"(l@CCI7q3T:&!YMgVck4Z$>F!Rdg'); // put a 32 character random key here
+define('API_KEY_ENCRYPTION_IV', 'C5JiQNnWj<BAwUgB'); // put a 16 character random key here
+define('API_KEY_REPLACE_KEY', '********');
+function encrypt_api_key($plaintext)
+{
+    $key = API_KEY_ENCRYPTION_KEY;
+    $iv = API_KEY_ENCRYPTION_IV;
+    return base64_encode(openssl_encrypt($plaintext, 'AES-256-CBC', $key, 0, $iv));
+}
+
+function decrypt_api_key($ciphertext)
+{
+    $key = API_KEY_ENCRYPTION_KEY;
+    $iv = API_KEY_ENCRYPTION_IV;
+    return openssl_decrypt(base64_decode($ciphertext), 'AES-256-CBC', $key, 0, $iv);
+}
+?>
 <!--Attatchment detgails-->
 <?php wp_get_attachment_metadata( $attachment_id, $unfiltered ); ?>
 <?php wp_get_attachment_image( int $attachment_id, string|array $size = 'thumbnail', bool $icon = false, string|array $attr = '' ) ?>
