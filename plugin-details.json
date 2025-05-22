@@ -13,11 +13,11 @@
     "intro": "You can add an infinite number of specs to any or all of your products using the Product specifications tab for WooCommerce plugin. You can add any kind of information to the product using the WYSIWYG editor available to each group. The options are unlimited.",
     "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png"
   },
-  "mos-restricted-categories-for-woocommerce": {
+  "mos-woocommerce-protected-categories": {
     "name": "Mos Restricted Categories for Woocommerce",
     "source": "external",
-    "slug": "mos-restricted-categories-for-woocommerce-main",
-    "file": "mos-restricted-categories-for-woocommerce-main/mos-restricted-categories-for-woocommerce.php",
+    "slug": "mos-woocommerce-protected-categories-main",
+    "file": "mos-woocommerce-protected-categories-main/mos-woocommerce-protected-categories.php",
     "intro": "Lock entire WooCommerce categories - restrict access to certain users, and user roles, or create a secret password. All products are completely hidden.",
     "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png",
     "download": "https://github.com/mostak-shahid/mos-woocommerce-protected-categories/archive/refs/heads/main.zip"
