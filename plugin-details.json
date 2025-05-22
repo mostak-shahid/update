@@ -17,8 +17,9 @@
     "name": "Mos Restricted Categories for Woocommerce",
     "source": "external",
     "slug": "mos-restricted-categories-for-woocommerce-main",
-    "file": "mos-restricted-categories-for-woocommerce-main/mos-restricted-categories-for-woocommerce.php",      
+    "file": "mos-restricted-categories-for-woocommerce-main/mos-restricted-categories-for-woocommerce.php",
     "intro": "Lock entire WooCommerce categories - restrict access to certain users, and user roles, or create a secret password. All products are completely hidden.",
-    "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png"
+    "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png",
+    "download": "https://github.com/mostak-shahid/mos-woocommerce-protected-categories/archive/refs/heads/main.zip"
   }
 }
