@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Sortable Accordions with Add/Remove and Checkboxes</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .accordion-container {
+            margin-bottom: 30px;
+        }
+        .add-button {
+            margin: 10px 0;
+            display: inline-block;
+            cursor: pointer;
+            color: green;
+        }
+        .remove-button {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .hidden-template {
+            display: none;
+        }
+        .header-checkbox {
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+            border: 1px solid #50575E;
+            cursor: pointer;
+            border-radius: 2px;
+            background-color: #ffffff;
+        }
+        .header-checkbox.checked {
+            background-color: #588157;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multiple Sortable Accordions with Add/Remove and Checkboxes</h1>
+
+    <!-- Accordion 1 -->
+    <div class="accordion-container">
+        <h2>Accordion 1</h2>
+        <div class="accordion" id="accordion-1"></div>
+        <div class="add-button" data-target="#accordion-1">+ Add New</div>
+    </div>
+
+    <!-- Accordion 2 -->
+    <div class="accordion-container">
+        <h2>Accordion 2</h2>
+        <div class="accordion" id="accordion-2"></div>
+        <div class="add-button" data-target="#accordion-2">+ Add New</div>
+    </div>
+
+    <!-- Hidden template for new sections -->
+    <div class="hidden-template">
+        <div class="accordion-item">
+            <h3>
+                <span class="header-checkbox"></span>
+                Section <span class="section-index"></span>
+                <span class="remove-button">× Remove</span>
+            </h3>
+            <div>
+                <label>Enable: <input type="checkbox" name="name[0][enable]" class="field-1"></label><br>
+                <label>Field 1: <input type="text" name="name[0][field-1]" class="field-1"></label><br>
+                <label>Field 2: <input type="text" name="name[0][field-2]" class="field-2"></label><br>
+                <label>Field 3: <input type="text" name="name[0][field-3]" class="field-3"></label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize sortable accordion functionality
+            function initializeAccordion($accordion) {
+                $accordion.accordion({
+                    header: "> div > h3",
+                    collapsible: true,
+                    active: false,
+                    heightStyle: "content"
+                }).sortable({
+                    axis: "y",
+                    handle: "h3",
+                    stop: function () {
+                        updateNames($accordion);
+                    }
+                });
+            }
+
+            // Update names based on position in the accordion
+            function updateNames($accordion) {
+                $accordion.find(".accordion-item").each(function (index) {
+                    const prefix = $accordion.attr("id");
+                    $(this).find(".section-index").text(index + 1);
+                    $(this).find(".field-1").attr("name", `${prefix}[${index}][field-1]`);
+                    $(this).find(".field-2").attr("name", `${prefix}[${index}][field-2]`);
+                    $(this).find(".field-3").attr("name", `${prefix}[${index}][field-3]`);
+                });
+            }
+
+            // Add new section to the accordion
+            $(".add-button").on("click", function () {
+                const targetSelector = $(this).data("target");
+                const $accordion = $(targetSelector);
+                const $template = $(".hidden-template .accordion-item").clone();
+
+                $accordion.append($template);
+                $accordion.accordion("refresh");
+                updateNames($accordion);
+            });
+
+            // Remove section from the accordion
+            $(document).on("click", ".remove-button", function () {
+                const $accordion = $(this).closest(".accordion-container").find(".accordion");
+                $(this).closest(".accordion-item").remove();
+                $accordion.accordion("refresh");
+                updateNames($accordion);
+            });
+
+            // Prevent click event propagation for checkboxes in the header
+            $(document).on("mousedown", ".header-checkbox", function (e) {
+                e.stopPropagation();
+            });
+
+            // Prevent the accordion toggle when clicking the checkbox
+            $(document).on("click", ".header-checkbox", function (e) {
+                let target = $(this).closest("h3").next().find('input[type="checkbox"]');
+                target.prop("checked", !target.prop("checked"));
+                $(this).toggleClass("checked");
+            });
+
+            // Initialize each accordion
+            $(".accordion").each(function () {
+                initializeAccordion($(this));
+            });
+
+            // Add a default section to each accordion
+            $(".add-button").each(function () {
+                $(this).trigger("click");
+            });
+        });
+    </script>
+</body>
+</html>

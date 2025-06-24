@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodeMirror 5 HTML Editor</title>
+
+  <!-- CodeMirror 5 CSS & JS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .editorContainer {
+      height: 400px;
+      border: 1px solid #ccc;
+    }
+
+    .buttons {
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #preview {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>HTML Editor (CodeMirror 5)</h2>
+
+  <div class="editorContainer" id="editorContainer"></div>
+
+  <div class="buttons">
+    <button onclick="runCode()">Run Code</button>
+    <button onclick="downloadCode()">Download HTML</button>
+  </div>
+
+  <h3>Preview:</h3>
+  <iframe id="preview"></iframe>
+
+  <script>
+    const defaultHTML = `<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { text-align: center; margin-top: 50px; font-family: sans-serif; }
+    h1 { color: green; }
+  </style>
+</head>
+<body>
+  <h1>Hello from CodeMirror 5</h1>
+  <p>This is your editable HTML.</p>
+</body>
+</html>`;
+
+    const editor = CodeMirror(document.getElementById('editorContainer'), {
+      lineNumbers: true,
+      mode: 'htmlmixed',
+      value: defaultHTML
+    });
+
+    function runCode() {
+      const code = editor.getValue();
+      const iframe = document.getElementById('preview');
+      const doc = iframe.contentDocument || iframe.contentWindow.document;
+      doc.open();
+      doc.write(code);
+      doc.close();
+    }
+
+    function downloadCode() {
+      const code = editor.getValue();
+      const now = new Date();
+	const timestamp = now.toISOString()
+		.replace(/T/, '_') // replace T with _
+		.replace(/:/g, '-') // replace : with -
+		.replace(/\..+/, ''); // remove milliseconds and timezone
+      const filename = `html_${timestamp}_${Math.floor(Math.random() * 9999)}.html`;
+
+      const blob = new Blob([code], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>

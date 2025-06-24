@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Demo styles -->
+    <style>
+      .swiper {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* .slider-nav .swiper-slide {
+        opacity: 0.4;
+      }
+
+      .slider-nav .swiper-slide-thumb-active {
+        opacity: 1;
+      } */
+      .vertical-slider,
+      .vertical-slider-nav {
+        height: 475px;
+      }
+      .swiper-button-prev,
+      .swiper-button-next {
+        width: 32px;
+        height: 32px;
+        background-color: #FFFFFF;
+        box-shadow: 0px 2px 8px 0px #0000002E;
+        border-radius: 50%;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      .swiper-button-prev {
+        background-image: url('data:image/svg+xml,<svg width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.39863 1.19883L0.598633 5.99883L5.39863 10.7988" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      }
+      .swiper-button-next {
+        background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.60137 14.8012L12.4014 10.0012L7.60137 5.20117" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+      }
+      .swiper-button-prev::after,
+      .swiper-button-next::after {
+        display: none;
+      }
+      .vertical-slider-nav .swiper-button-prev,
+      .vertical-slider-nav .swiper-button-next {
+        rotate: 90deg;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .vertical-slider-nav .swiper-button-prev {
+        top: 32px;
+      }
+      .vertical-slider-nav .swiper-button-next {
+        bottom: 32px;
+    }
+
+.gallery-container {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+.gallery-row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * var(--bs-gutter-y));
+  margin-right: calc(-0.5 * var(--bs-gutter-x));
+  margin-left: calc(-0.5 * var(--bs-gutter-x));
+}
+.gallery-row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+}
+.gallery-col-small {
+  flex: 0 0 auto;
+  width: 25%;
+}
+
+.gallery-col-big {
+  flex: 0 0 auto;
+  width: 75%;
+}
+      .gallery-d-flex {
+        display: flex;
+        }
+        .gallery-gap-2 {
+  gap: 0.5rem;
+}
+.gallery-g-2 {
+  --bs-gutter-x: 0.5rem;
+  --bs-gutter-y: 0.5rem;
+}
+
+      .gallery-flex-row {
+  flex-direction: row;
+}
+
+.gallery-flex-column {
+  flex-direction: column;
+}
+
+.gallery-flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.gallery-flex-column-reverse {
+  flex-direction: column-reverse;
+}
+      /* From */
+      *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.container {
+  max-width: 1320px;
+}
+
+.col-6 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="gallery-container container">
+      <div class="gallery-row">
+        <div class="col-6">
+          <div class="gallery-d-flex gallery-flex-column-reverse gallery-gap-2">
+            <div class="swiper horizontal-slider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <video src="https://into-the-program.com/uploads/sample_video01.mp4" preload="none" muted></video>
+                </div>
+                <div class="swiper-slide">
+                  <video src="https://into-the-program.com/uploads/sample_video02.mp4" preload="none" muted></video>
+                </div>
+                <div class="swiper-slide">
+                  <video src="https://into-the-program.com/uploads/sample_video03.mp4" preload="none" muted></video>
+                </div>
+              </div>
+              <!-- <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div> -->
+            </div>
+            <div thumbsSlider="" class="swiper horizontal-slider-nav slider-nav">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-10.jpg" />
+                </div>
+                <!-- <div class="swiper-button-next"></div><div class="swiper-button-prev"></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="gallery-row gallery-g-2 gallery-flex-row">
+            <div class="gallery-col-big">
+              <div class="swiper vertical-slider">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-1.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                  </div>
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-2.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                  </div>
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-3.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                  </div>
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-4.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                  </div>
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-5.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                  </div>
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-6.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                  </div>
+                  <div class="swiper-slide zoom-image" data-img="https://swiperjs.com/demos/images/nature-7.jpg">
+                    <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                  </div>
+                </div>
+                <!-- <div class="swiper-button-next"></div><div class="swiper-button-prev"></div> -->
+              </div>
+            </div>
+            <div class="gallery-col-small">
+              <div class="swiper vertical-slider-nav slider-nav">                
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+                </div>
+              </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="http://wordpress.test/wp-includes/js/jquery/jquery.js" id="jquery-core-js"></script>
+      <script src="http://wordpress.test/wp-content/plugins/upgrade-store/public/plugins/jquery-zoom/jquery.zoom.min.js"></script>
+      <!-- Swiper JS -->
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+      <!-- Initialize Swiper -->
+      <script>  
+      jQuery(document).ready(function($) {
+        $('.zoom-image').zoom();
+      });      
+        
+        var verticalSwiperNav = new Swiper(".vertical-slider-nav", {
+          loop: true,
+          spaceBetween: 10,
+          autoHeight: true,
+          slidesPerView: 4,
+          direction: "vertical",
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+        var verticalSwiper = new Swiper(".vertical-slider", {
+          loop: true,
+          spaceBetween: 10,
+          autoHeight: true,
+          slidesPerView: 1,
+          direction: "vertical",
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          thumbs: {
+            swiper: verticalSwiperNav,
+          },
+          on: {
+            transitionStart: function() {
+              var videos = document.querySelectorAll("video");
+              Array.prototype.forEach.call(videos, function(video) {
+                video.pause();
+              });
+            },
+            transitionEnd: function() {
+              var activeIndex = this.activeIndex;
+              var activeSlide = document.getElementsByClassName("swiper-slide")[activeIndex];
+              var activeSlideVideo = activeSlide.getElementsByTagName("video")[0];
+              if (activeSlideVideo) activeSlideVideo.play();
+            },
+          },
+          //            autoplay: {
+          //                delay: 2500,
+          //                disableOnInteraction: false,
+          //            },
+        });
+        var horizontalSwiperNav = new Swiper(".horizontal-slider-nav", {
+          loop: true,
+          spaceBetween: 10,
+          slidesPerView: 3,
+          freeMode: true,
+          watchSlidesProgress: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          // direction: "vertical",
+        });
+        var horizontalSwiper = new Swiper(".horizontal-slider", {
+          loop: true,
+          spaceBetween: 10,
+          autoHeight: true,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          thumbs: {
+            swiper: horizontalSwiperNav,
+          },
+          on: {
+            transitionStart: function() {
+              var videos = document.querySelectorAll("video");
+              Array.prototype.forEach.call(videos, function(video) {
+                video.pause();
+              });
+            },
+            transitionEnd: function() {
+              var activeIndex = this.activeIndex;
+              var activeSlide = document.getElementsByClassName("swiper-slide")[activeIndex];
+              var activeSlideVideo = activeSlide.getElementsByTagName("video")[0];
+              if (activeSlideVideo) activeSlideVideo.play();
+            },
+          },
+          //            autoplay: {
+          //                delay: 2500,
+          //                disableOnInteraction: false,
+          //            },
+        });
+      </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disable Features</title>
+  <script>
+    // Disable right-click
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      alert("Right-click is disabled!");
+    });
+
+    // Disable specific keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey && e.key === 'u') || // Ctrl+U
+          (e.ctrlKey && e.key === 's') || // Ctrl+S
+          (e.ctrlKey && e.key === 'i')) { // Ctrl+I
+        e.preventDefault();
+        alert("This keyboard shortcut is disabled!");
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Right-click and certain shortcuts are disabled</h1>
+  <p>Try using right-click or pressing Ctrl+U or Ctrl+I!</p>
+</body>
+</html>
