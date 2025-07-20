@@ -13,6 +13,20 @@
     "intro": "You can add an infinite number of specs to any or all of your products using the Product specifications tab for WooCommerce plugin. You can add any kind of information to the product using the WYSIWYG editor available to each group. The options are unlimited.",
     "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png"
   },
+  "mos-speed-up": {
+    "name": "Mos Speed up",
+    "source": "internal",
+    "file": "mos-speed-up/mos-speed-up.php",
+    "intro": "Increases the speed of your site to improve your scores in Pingdom, GTmetrix, PageSpeed and YSlow. It also helps to improve your SEO.",
+    "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png"
+  },
+  "mos-testimonial": {
+    "name": "Mos Testimonial",
+    "source": "internal",
+    "file": "mos-testimonial/mos-testimonial.php",
+    "intro": "Mos Testimonial plugin that lets you easily create, order and publicize testimonials using shortcodes.",
+    "image": "https://raw.githubusercontent.com/mostak-shahid/update/master/assets/images/icon-256x256.png"
+  },
   "mos-woocommerce-protected-categories": {
     "name": "Mos Restricted Categories for Woocommerce",
     "source": "external",
