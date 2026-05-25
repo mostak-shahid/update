@@ -1,0 +1,8 @@
+{
+			"name" : "Daily Cash Tracker",
+			"version" : "1.0.0",
+			"download_url" : "https://github.com/mostak-shahid/daily-cash-tracker/archive/refs/heads/main.zip",
+			"sections" : {
+				"description" : "This is the basic version of Mos Course."
+			}
+}
